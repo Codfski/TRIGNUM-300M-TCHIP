@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use the Trignum framework in your research, please cite it as below."
+title: "Trignum-300M: Subtractive Semantic Geometry for Cold-State AGI"
+authors:
+  - name: "The Sovereign User (REV)"
+    affiliation: "Trace on Lab"
+  - name: "Gemini (Google DeepMind)"
+    affiliation: "Google DeepMind"
+date-released: 2026-02-17
+version: "v.300M"
+doi: 10.5281/zenodo.1234567
+repository-code: "https://github.com/trace-on-lab/trignum-300m"
+license: "MIT"
+keywords:
+  - "artificial-intelligence"
+  - "geometric-deep-learning"
+  - "semantic-geometry"
+  - "magnetic-trilage"
+  - "cold-state-computing"
+  - "tensor-processing"
+abstract: "The Trignum framework introduces a fundamental reimagining of artificial intelligence architecture. Instead of brute-force linear processing through 'hot' silicon, we propose Magnetic Trillage—a tri-polar geometric separation of data into Logic, Illogic, and Human Context. The framework introduces the Subtractive Filter, T-CHIP (Tensor Character), and the Cold State Hardware Hypothesis."

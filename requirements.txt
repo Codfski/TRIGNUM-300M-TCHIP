@@ -1,0 +1,12 @@
+# No external dependencies required for core functionality.
+# All modules use Python standard library only.
+
+# Optional: for running tests
+pytest>=7.0.0
+
+# Optional: for Jupyter notebooks
+jupyter>=1.0.0
+notebook>=7.0.0
+
+# Optional: for PDF generation (TRIGNUM Tetrahedron paper)
+reportlab>=4.0.0

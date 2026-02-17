@@ -1,21 +1,24 @@
 cff-version: 1.2.0
-message: "If you use the Trignum framework in your research, please cite it as below."
-title: "Trignum-300M: Subtractive Semantic Geometry for Cold-State AGI"
+message: "If you use this software, please cite it as below."
 authors:
-  - name: "The Sovereign User (REV)"
-    affiliation: "Trace on Lab"
-  - name: "Gemini (Google DeepMind)"
-    affiliation: "Google DeepMind"
+- family-names: "Abdessattar"
+  given-names: "Moez"
+  affiliation: "TRACE ON LAB"
+- family-names: "Gemini"
+  given-names: "DeepMind"
+  affiliation: "Google DeepMind"
+title: "The Pre-Flight Check for Autonomous AI: Zero-Model Structural Reasoning Validation at Scale"
+abstract: "The Trignum framework introduces a fundamental reimagining of artificial intelligence architecture. Instead of brute-force linear processing through 'hot' silicon, we propose Magnetic Trillage—a tri-polar geometric separation of data into Logic, Illogic, and Human Context. The framework introduces the Subtractive Filter, T-CHIP (Tensor Character), and the Cold State Hardware Hypothesis. It implements a zero-model structural reasoning validator that achieves 82,544 samples/second throughput."
+version: 1.0.0
+doi: 10.5281/zenodo.18672142
 date-released: 2026-02-17
-version: "v.300M"
-doi: 10.5281/zenodo.1234567
-repository-code: "https://github.com/trace-on-lab/trignum-300m"
-license: "MIT"
+url: "https://github.com/Codfski/TRIGNUM-300M-TCHIP"
+license: MIT
 keywords:
-  - "artificial-intelligence"
-  - "geometric-deep-learning"
-  - "semantic-geometry"
+  - "AI safety"
+  - "reasoning validation"
+  - "hallucination detection"
+  - "autonomous agents"
+  - "zero-model"
   - "magnetic-trilage"
   - "cold-state-computing"
-  - "tensor-processing"
-abstract: "The Trignum framework introduces a fundamental reimagining of artificial intelligence architecture. Instead of brute-force linear processing through 'hot' silicon, we propose Magnetic Trillage—a tri-polar geometric separation of data into Logic, Illogic, and Human Context. The framework introduces the Subtractive Filter, T-CHIP (Tensor Character), and the Cold State Hardware Hypothesis."

@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIGNUM-300M | Interactive Magnetic Trillage Visualizer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #4A90D9;
+            --blue-glow: #6BB5FF;
+            --red: #FF4444;
+            --red-glow: #FF6B6B;
+            --gold: #FFD700;
+            --gold-glow: #FFEC80;
+            --bg-dark: #050810;
+            --bg-panel: rgba(10, 15, 30, 0.85);
+            --border: rgba(74, 144, 217, 0.2);
+            --text: #E0E7EE;
+            --text-dim: #8899AA;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(5,8,16,0.95) 0%, rgba(5,8,16,0) 100%);
+            pointer-events: none;
+        }
+
+        .header > * { pointer-events: auto; }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px; height: 40px;
+            position: relative;
+        }
+
+        .logo-icon svg {
+            width: 100%; height: 100%;
+            filter: drop-shadow(0 0 8px var(--blue));
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 12px var(--blue);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ===== SIDE PANELS ===== */
+        .panel {
+            position: fixed;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .panel-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Left Panel — T-CHIP Status */
+        .panel-left {
+            top: 80px;
+            left: 20px;
+            width: 240px;
+        }
+
+        .tchip-glow-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .glow-orb {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--blue-glow) 0%, var(--blue) 50%, transparent 70%);
+            box-shadow: 0 0 30px var(--blue), 0 0 60px rgba(74,144,217,0.3);
+            transition: all 0.8s ease;
+            animation: orb-breathe 3s ease-in-out infinite;
+        }
+
+        .glow-orb.red {
+            background: radial-gradient(circle, var(--red-glow) 0%, var(--red) 50%, transparent 70%);
+            box-shadow: 0 0 30px var(--red), 0 0 60px rgba(255,68,68,0.3);
+            animation: none;
+        }
+
+        .glow-orb.gold {
+            background: radial-gradient(circle, var(--gold-glow) 0%, var(--gold) 50%, transparent 70%);
+            box-shadow: 0 0 30px var(--gold), 0 0 60px rgba(255,215,0,0.3);
+            animation: orb-breathe-gold 2s ease-in-out infinite;
+        }
+
+        @keyframes orb-breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes orb-breathe-gold {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .glow-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .glow-sublabel {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stat-value.blue { color: var(--blue); }
+        .stat-value.red { color: var(--red); }
+        .stat-value.gold { color: var(--gold); }
+
+        /* Right Panel — Face Weights */
+        .panel-right {
+            top: 80px;
+            right: 20px;
+            width: 220px;
+        }
+
+        .face-bar-container {
+            margin-bottom: 14px;
+        }
+
+        .face-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .face-bar-name {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .face-bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+        }
+
+        .face-bar-track {
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .face-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        .face-bar-fill.alpha { background: linear-gradient(90deg, var(--blue), var(--blue-glow)); }
+        .face-bar-fill.beta { background: linear-gradient(90deg, var(--red), var(--red-glow)); }
+        .face-bar-fill.gamma { background: linear-gradient(90deg, var(--gold), var(--gold-glow)); }
+
+        /* Bottom Panel — Controls */
+        .panel-bottom {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            padding: 12px 20px;
+            border-radius: 50px;
+        }
+
+        .ctrl-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ctrl-btn:hover {
+            background: rgba(74,144,217,0.15);
+            border-color: var(--blue);
+            box-shadow: 0 0 20px rgba(74,144,217,0.2);
+            transform: translateY(-1px);
+        }
+
+        .ctrl-btn.active {
+            background: rgba(74,144,217,0.2);
+            border-color: var(--blue);
+            color: var(--blue-glow);
+        }
+
+        .ctrl-btn.pulse-btn:hover {
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.1);
+            box-shadow: 0 0 20px rgba(255,215,0,0.2);
+        }
+
+        .ctrl-btn.freeze-btn:hover {
+            border-color: var(--red);
+            background: rgba(255,68,68,0.1);
+            box-shadow: 0 0 20px rgba(255,68,68,0.2);
+        }
+
+        .ctrl-btn.snap-btn:hover {
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.15);
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+
+        /* Bottom-left info */
+        .info-badge {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            z-index: 50;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* Particle counter */
+        .particle-counter {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 50;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            text-align: right;
+            line-height: 1.8;
+        }
+
+        /* Message overlay */
+        .message-overlay {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .message-overlay.visible {
+            opacity: 1;
+        }
+
+        .message-overlay .msg-main {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+
+        .message-overlay .msg-sub {
+            font-size: 14px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        .msg-main.blue { color: var(--blue-glow); text-shadow: 0 0 40px var(--blue); }
+        .msg-main.red { color: var(--red-glow); text-shadow: 0 0 40px var(--red); }
+        .msg-main.gold { color: var(--gold-glow); text-shadow: 0 0 40px var(--gold); }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 40 40">
+                    <polygon points="20,2 38,35 2,35" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+                    <circle cx="20" cy="22" r="5" fill="none" stroke="url(#grad1)" stroke-width="1.5" opacity="0.6"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4A90D9"/>
+                            <stop offset="50%" style="stop-color:#FF4444"/>
+                            <stop offset="100%" style="stop-color:#FFD700"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-text">TRIGNUM 300M</div>
+                <div class="logo-sub">MAGNETIC TRILLAGE VISUALIZER</div>
+            </div>
+        </div>
+        <div class="header-status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="statusText">TRILLAGE ACTIVE</span>
+        </div>
+    </div>
+
+    <!-- Left Panel — T-CHIP -->
+    <div class="panel panel-left">
+        <div class="panel-title">T-CHIP v.300M</div>
+        <div class="tchip-glow-indicator">
+            <div class="glow-orb" id="glowOrb"></div>
+            <div>
+                <div class="glow-label" id="glowLabel">BLUE</div>
+                <div class="glow-sublabel" id="glowSublabel">Logic Stable</div>
+            </div>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Particles</span>
+            <span class="stat-value blue" id="statParticles">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Entropy</span>
+            <span class="stat-value" id="statEntropy">0.000</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Vacuum Str.</span>
+            <span class="stat-value red" id="statVacuum">0.000</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Freezes</span>
+            <span class="stat-value red" id="statFreezes">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Sovereigns</span>
+            <span class="stat-value gold" id="statSovereigns">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Confidence</span>
+            <span class="stat-value blue" id="statConfidence">0.00%</span>
+        </div>
+    </div>
+
+    <!-- Right Panel — Face Weights -->
+    <div class="panel panel-right">
+        <div class="panel-title">MAGNETIC FACES</div>
+        <div class="face-bar-container">
+            <div class="face-bar-header">
+                <span class="face-bar-name" style="color:var(--blue)">α LOGIC</span>
+                <span class="face-bar-value" style="color:var(--blue)" id="faceAlpha">0.00</span>
+            </div>
+            <div class="face-bar-track">
+                <div class="face-bar-fill alpha" id="barAlpha" style="width:0%"></div>
+            </div>
+        </div>
+        <div class="face-bar-container">
+            <div class="face-bar-header">
+                <span class="face-bar-name" style="color:var(--red)">β ILLOGIC</span>
+                <span class="face-bar-value" style="color:var(--red)" id="faceBeta">0.00</span>
+            </div>
+            <div class="face-bar-track">
+                <div class="face-bar-fill beta" id="barBeta" style="width:0%"></div>
+            </div>
+        </div>
+        <div class="face-bar-container">
+            <div class="face-bar-header">
+                <span class="face-bar-name" style="color:var(--gold)">γ CONTEXT</span>
+                <span class="face-bar-value" style="color:var(--gold)" id="faceGamma">0.00</span>
+            </div>
+            <div class="face-bar-track">
+                <div class="face-bar-fill gamma" id="barGamma" style="width:0%"></div>
+            </div>
+        </div>
+
+        <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border);">
+            <div class="panel-title" style="margin-bottom:10px">FIELD ENERGY</div>
+            <div class="stat-row">
+                <span class="stat-label">Temperature</span>
+                <span class="stat-value" id="statTemp">0.00 K</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">State</span>
+                <span class="stat-value blue" id="statState">COLD</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="panel panel-bottom">
+        <button class="ctrl-btn" id="btnInject" onclick="injectParticles()">
+            ⚡ INJECT DATA
+        </button>
+        <button class="ctrl-btn pulse-btn" id="btnPulse" onclick="applyPulse()">
+            💛 HUMAN PULSE
+        </button>
+        <button class="ctrl-btn freeze-btn" id="btnFreeze" onclick="triggerFreeze()">
+            🔴 FREEZE
+        </button>
+        <button class="ctrl-btn snap-btn" id="btnSnap" onclick="subtractiveSnap()">
+            💎 SNAP
+        </button>
+        <button class="ctrl-btn" id="btnReset" onclick="resetSystem()">
+            ↺ RESET
+        </button>
+    </div>
+
+    <!-- Info Badge -->
+    <div class="info-badge">
+        TRACE ON LAB © 2026<br>
+        SOVEREIGN ARCHITECTURE
+    </div>
+
+    <div class="particle-counter">
+        <span id="fpsCounter">60 FPS</span><br>
+        <span id="particleCount">0 PARTICLES</span>
+    </div>
+
+    <!-- Message Overlay -->
+    <div class="message-overlay" id="messageOverlay">
+        <div class="msg-main" id="msgMain"></div>
+        <div class="msg-sub" id="msgSub"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    // ═══════════════════════════════════════════════════════════
+    // TRIGNUM-300M INTERACTIVE MAGNETIC TRILLAGE VISUALIZER
+    // ═══════════════════════════════════════════════════════════
+
+    // ─── STATE ───
+    const STATE = {
+        glow: 'blue',        // blue | red | gold
+        particles: [],
+        freezeCount: 0,
+        sovereignCount: 0,
+        entropy: 0,
+        vacuum: 0,
+        confidence: 0.5,
+        faceWeights: { alpha: 0.33, beta: 0.33, gamma: 0.34 },
+        frozen: false,
+        pulseActive: false,
+        particlesInjected: 0,
+        temperature: 0.01,
+    };
+
+    // ─── COLORS ───
+    const COLORS = {
+        blue: new THREE.Color(0x4A90D9),
+        blueGlow: new THREE.Color(0x6BB5FF),
+        red: new THREE.Color(0xFF4444),
+        redGlow: new THREE.Color(0xFF6B6B),
+        gold: new THREE.Color(0xFFD700),
+        goldGlow: new THREE.Color(0xFFEC80),
+        bg: new THREE.Color(0x050810),
+        white: new THREE.Color(0xE0E7EE),
+    };
+
+    // ─── THREE.JS SETUP ───
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = COLORS.bg;
+    scene.fog = new THREE.FogExp2(0x050810, 0.015);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 2, 12);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    container.appendChild(renderer.domElement);
+
+    // ─── LIGHTS ───
+    const ambientLight = new THREE.AmbientLight(0x222244, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight1 = new THREE.PointLight(0x4A90D9, 2, 30);
+    pointLight1.position.set(5, 5, 5);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0xFF4444, 1.5, 30);
+    pointLight2.position.set(-5, -3, 3);
+    scene.add(pointLight2);
+
+    const pointLight3 = new THREE.PointLight(0xFFD700, 1.5, 30);
+    pointLight3.position.set(0, 5, -5);
+    scene.add(pointLight3);
+
+    // ─── TRIGNUM PYRAMID (TETRAHEDRON) ───
+    const tetraGeo = new THREE.TetrahedronGeometry(3.5, 0);
+    const tetraMat = new THREE.MeshPhysicalMaterial({
+        color: 0x1A2A4A,
+        transparent: true,
+        opacity: 0.12,
+        roughness: 0.1,
+        metalness: 0.8,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
+        side: THREE.DoubleSide,
+    });
+    const tetraMesh = new THREE.Mesh(tetraGeo, tetraMat);
+    scene.add(tetraMesh);
+
+    // Wireframe
+    const wireGeo = new THREE.TetrahedronGeometry(3.55, 0);
+    const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x4A90D9,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3,
+    });
+    const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+    scene.add(wireMesh);
+
+    // Get tetrahedron vertices for face positions
+    const positions = tetraGeo.attributes.position;
+    const vertices = [];
+    for (let i = 0; i < positions.count; i++) {
+        const v = new THREE.Vector3(positions.getX(i), positions.getY(i), positions.getZ(i));
+        let isDuplicate = false;
+        for (const existing of vertices) {
+            if (existing.distanceTo(v) < 0.01) { isDuplicate = true; break; }
+        }
+        if (!isDuplicate) vertices.push(v);
+    }
+
+    // ─── VERTEX MARKERS (α, β, γ, Apex) ───
+    const vertexColors = [COLORS.blue, COLORS.red, COLORS.gold, COLORS.white];
+    const vertexLabels = ['α', 'β', 'γ', 'R'];
+    const vertexMarkers = [];
+
+    vertices.forEach((v, i) => {
+        const markerGeo = new THREE.SphereGeometry(0.18, 16, 16);
+        const markerMat = new THREE.MeshBasicMaterial({
+            color: vertexColors[i % 4],
+            transparent: true,
+            opacity: 0.9,
+        });
+        const marker = new THREE.Mesh(markerGeo, markerMat);
+        marker.position.copy(v);
+        scene.add(marker);
+        vertexMarkers.push(marker);
+
+        // Glow sphere
+        const glowGeo = new THREE.SphereGeometry(0.35, 16, 16);
+        const glowMat = new THREE.MeshBasicMaterial({
+            color: vertexColors[i % 4],
+            transparent: true,
+            opacity: 0.15,
+        });
+        const glow = new THREE.Mesh(glowGeo, glowMat);
+        glow.position.copy(v);
+        scene.add(glow);
+    });
+
+    // ─── T-CHIP (OCTAHEDRON AT CENTER) ───
+    const tchipGeo = new THREE.OctahedronGeometry(0.6, 0);
+    const tchipMat = new THREE.MeshPhysicalMaterial({
+        color: 0x4A90D9,
+        emissive: 0x4A90D9,
+        emissiveIntensity: 0.5,
+        transparent: true,
+        opacity: 0.85,
+        roughness: 0.05,
+        metalness: 0.95,
+        clearcoat: 1.0,
+    });
+    const tchipMesh = new THREE.Mesh(tchipGeo, tchipMat);
+    scene.add(tchipMesh);
+
+    // T-CHIP inner glow
+    const tchipGlowGeo = new THREE.OctahedronGeometry(0.9, 0);
+    const tchipGlowMat = new THREE.MeshBasicMaterial({
+        color: 0x4A90D9,
+        transparent: true,
+        opacity: 0.08,
+    });
+    const tchipGlow = new THREE.Mesh(tchipGlowGeo, tchipGlowMat);
+    scene.add(tchipGlow);
+
+    // T-CHIP point light
+    const tchipLight = new THREE.PointLight(0x4A90D9, 3, 8);
+    scene.add(tchipLight);
+
+    // ─── MAGNETIC FIELD LINES ───
+    const fieldLines = [];
+    for (let i = 0; i < 6; i++) {
+        const curve = new THREE.CatmullRomCurve3([
+            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(
+                (Math.random() - 0.5) * 4,
+                (Math.random() - 0.5) * 4,
+                (Math.random() - 0.5) * 4
+            ),
+            vertices[i % vertices.length].clone(),
+        ]);
+        const lineGeo = new THREE.TubeGeometry(curve, 30, 0.015, 6, false);
+        const lineMat = new THREE.MeshBasicMaterial({
+            color: vertexColors[i % 4],
+            transparent: true,
+            opacity: 0.12,
+        });
+        const line = new THREE.Mesh(lineGeo, lineMat);
+        scene.add(line);
+        fieldLines.push({ mesh: line, curve, targetVertex: i % vertices.length });
+    }
+
+    // ─── BACKGROUND STARS ───
+    const starGeo = new THREE.BufferGeometry();
+    const starPositions = [];
+    for (let i = 0; i < 2000; i++) {
+        starPositions.push(
+            (Math.random() - 0.5) * 200,
+            (Math.random() - 0.5) * 200,
+            (Math.random() - 0.5) * 200
+        );
+    }
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+    const starMat = new THREE.PointsMaterial({ color: 0x445566, size: 0.15, transparent: true, opacity: 0.6 });
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
+
+    // ─── PARTICLE SYSTEM ───
+    class Particle {
+        constructor(type = 'data') {
+            this.type = type; // 'logic', 'illogic', 'context', 'data'
+            this.age = 0;
+            this.maxAge = 200 + Math.random() * 300;
+            this.alive = true;
+
+            const colors = {
+                logic: COLORS.blue,
+                illogic: COLORS.red,
+                context: COLORS.gold,
+                data: COLORS.white,
+            };
+
+            const size = type === 'data' ? 0.06 : 0.08;
+            const geo = new THREE.SphereGeometry(size, 6, 6);
+            const mat = new THREE.MeshBasicMaterial({
+                color: colors[type] || COLORS.white,
+                transparent: true,
+                opacity: 0.8,
+            });
+            this.mesh = new THREE.Mesh(geo, mat);
+
+            // Start from random position outside pyramid
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 5 + Math.random() * 3;
+            this.mesh.position.set(
+                Math.cos(angle) * dist,
+                (Math.random() - 0.5) * 6,
+                Math.sin(angle) * dist
+            );
+
+            this.velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02
+            );
+
+            // Target vertex based on type
+            if (type === 'logic') this.targetIdx = 0;
+            else if (type === 'illogic') this.targetIdx = 1;
+            else if (type === 'context') this.targetIdx = 2;
+            else this.targetIdx = Math.floor(Math.random() * 3);
+
+            scene.add(this.mesh);
+        }
+
+        update() {
+            if (!this.alive || STATE.frozen) return;
+
+            this.age++;
+            if (this.age > this.maxAge) {
+                this.alive = false;
+                scene.remove(this.mesh);
+                return;
+            }
+
+            const target = vertices[this.targetIdx];
+            if (!target) return;
+
+            // Magnetic attraction toward target face
+            const dir = new THREE.Vector3().subVectors(target, this.mesh.position);
+            const dist = dir.length();
+            dir.normalize();
+
+            // Attraction strength increases as particle gets closer
+            const attraction = 0.0008 / Math.max(dist * 0.5, 0.1);
+            this.velocity.add(dir.multiplyScalar(attraction));
+
+            // Slight spiral motion
+            const perpendicular = new THREE.Vector3(-dir.z, 0, dir.x).normalize();
+            this.velocity.add(perpendicular.multiplyScalar(0.0002));
+
+            // Damping
+            this.velocity.multiplyScalar(0.995);
+
+            this.mesh.position.add(this.velocity);
+
+            // Fade out near end of life
+            const lifeFrac = this.age / this.maxAge;
+            this.mesh.material.opacity = lifeFrac > 0.8 ? (1 - lifeFrac) * 5 * 0.8 : 0.8;
+
+            // Absorbed when very close to target
+            if (dist < 0.5) {
+                this.alive = false;
+                scene.remove(this.mesh);
+                // Update face weights
+                if (this.targetIdx === 0) STATE.faceWeights.alpha += 0.01;
+                else if (this.targetIdx === 1) STATE.faceWeights.beta += 0.01;
+                else STATE.faceWeights.gamma += 0.01;
+            }
+        }
+    }
+
+    // ─── INJECT PARTICLES ───
+    function injectParticles() {
+        if (STATE.frozen) return;
+
+        const types = ['logic', 'illogic', 'context', 'data', 'data', 'data'];
+        for (let i = 0; i < 30; i++) {
+            const type = types[Math.floor(Math.random() * types.length)];
+            STATE.particles.push(new Particle(type));
+        }
+        STATE.particlesInjected += 30;
+        STATE.entropy = Math.min(1, STATE.entropy + 0.08);
+        STATE.temperature = Math.min(2, STATE.temperature + 0.05);
+
+        showMessage('⚡ DATA INJECTED', `${STATE.particlesInjected} Ferro-Data particles`, 'blue');
+
+        // Flash inject button
+        document.getElementById('btnInject').classList.add('active');
+        setTimeout(() => document.getElementById('btnInject').classList.remove('active'), 300);
+    }
+
+    // ─── APPLY HUMAN PULSE ───
+    function applyPulse() {
+        if (STATE.frozen) {
+            // Unfreeze
+            STATE.frozen = false;
+            STATE.glow = 'gold';
+            STATE.sovereignCount++;
+            STATE.confidence = Math.min(1, STATE.confidence + 0.2);
+            STATE.temperature = Math.max(0.01, STATE.temperature - 0.5);
+            showMessage('🟡 SOVEREIGN REALITY', 'Human Pulse collapsed the wave-function', 'gold');
+        } else {
+            STATE.glow = 'gold';
+            STATE.pulseActive = true;
+            STATE.sovereignCount++;
+            STATE.confidence = Math.min(1, STATE.confidence + 0.15);
+            STATE.faceWeights.gamma += 0.1;
+            showMessage('💛 PULSE APPLIED', 'Context face resonating', 'gold');
+            setTimeout(() => {
+                STATE.glow = 'blue';
+                STATE.pulseActive = false;
+            }, 3000);
+        }
+        updateTCHIPGlow();
+    }
+
+    // ─── TRIGGER FREEZE ───
+    function triggerFreeze() {
+        STATE.frozen = true;
+        STATE.glow = 'red';
+        STATE.freezeCount++;
+        STATE.vacuum = Math.min(1, STATE.vacuum + 0.3);
+        STATE.faceWeights.beta += 0.15;
+        showMessage('🔴 T-CHIP FROZEN', 'Illogic boundary detected. Human Pulse required.', 'red');
+        updateTCHIPGlow();
+    }
+
+    // ─── SUBTRACTIVE SNAP ───
+    function subtractiveSnap() {
+        // Kill all 'data' and 'illogic' particles rapidly
+        STATE.particles.forEach(p => {
+            if (p.type === 'data' || p.type === 'illogic') {
+                p.alive = false;
+                scene.remove(p.mesh);
+            }
+        });
+        STATE.particles = STATE.particles.filter(p => p.alive);
+        STATE.entropy = Math.max(0, STATE.entropy - 0.5);
+        STATE.temperature = Math.max(0.01, STATE.temperature - 0.3);
+        STATE.confidence = Math.min(1, STATE.confidence + 0.25);
+        STATE.glow = 'gold';
+        showMessage('💎 SUBTRACTIVE SNAP', 'Noise removed. Truth remains.', 'gold');
+        setTimeout(() => {
+            STATE.glow = 'blue';
+            updateTCHIPGlow();
+        }, 2000);
+        updateTCHIPGlow();
+    }
+
+    // ─── RESET ───
+    function resetSystem() {
+        STATE.particles.forEach(p => { p.alive = false; scene.remove(p.mesh); });
+        STATE.particles = [];
+        STATE.frozen = false;
+        STATE.glow = 'blue';
+        STATE.entropy = 0;
+        STATE.vacuum = 0;
+        STATE.confidence = 0.5;
+        STATE.temperature = 0.01;
+        STATE.faceWeights = { alpha: 0.33, beta: 0.33, gamma: 0.34 };
+        STATE.particlesInjected = 0;
+        STATE.freezeCount = 0;
+        STATE.sovereignCount = 0;
+        updateTCHIPGlow();
+        showMessage('↺ SYSTEM RESET', 'All clear. Inject data to begin.', 'blue');
+    }
+
+    // ─── UPDATE T-CHIP GLOW ───
+    function updateTCHIPGlow() {
+        const colorMap = {
+            blue: { color: 0x4A90D9, emissive: 0x4A90D9 },
+            red: { color: 0xFF4444, emissive: 0xFF4444 },
+            gold: { color: 0xFFD700, emissive: 0xFFD700 },
+        };
+        const c = colorMap[STATE.glow];
+        tchipMat.color.setHex(c.color);
+        tchipMat.emissive.setHex(c.emissive);
+        tchipGlowMat.color.setHex(c.color);
+        tchipLight.color.setHex(c.color);
+
+        const orb = document.getElementById('glowOrb');
+        orb.className = 'glow-orb ' + STATE.glow;
+
+        const labels = { blue: 'BLUE', red: 'RED', gold: 'GOLD' };
+        const sublabels = { blue: 'Logic Stable', red: 'THE FREEZE', gold: 'Sovereign Reality' };
+        document.getElementById('glowLabel').textContent = labels[STATE.glow];
+        document.getElementById('glowLabel').style.color = `var(--${STATE.glow})`;
+        document.getElementById('glowSublabel').textContent = sublabels[STATE.glow];
+
+        const dot = document.getElementById('statusDot');
+        dot.style.background = `var(--${STATE.glow})`;
+        dot.style.boxShadow = `0 0 12px var(--${STATE.glow})`;
+
+        const statusTexts = { blue: 'TRILLAGE ACTIVE', red: 'FROZEN — AWAITING PULSE', gold: 'SOVEREIGN REALITY' };
+        document.getElementById('statusText').textContent = statusTexts[STATE.glow];
+    }
+
+    // ─── SHOW MESSAGE ───
+    function showMessage(main, sub, color) {
+        const overlay = document.getElementById('messageOverlay');
+        const mainEl = document.getElementById('msgMain');
+        const subEl = document.getElementById('msgSub');
+        mainEl.textContent = main;
+        mainEl.className = 'msg-main ' + color;
+        subEl.textContent = sub;
+        overlay.classList.add('visible');
+        setTimeout(() => overlay.classList.remove('visible'), 2500);
+    }
+
+    // ─── UPDATE UI ───
+    function updateUI() {
+        const alive = STATE.particles.filter(p => p.alive).length;
+        document.getElementById('statParticles').textContent = alive;
+        document.getElementById('statEntropy').textContent = STATE.entropy.toFixed(3);
+        document.getElementById('statVacuum').textContent = STATE.vacuum.toFixed(3);
+        document.getElementById('statFreezes').textContent = STATE.freezeCount;
+        document.getElementById('statSovereigns').textContent = STATE.sovereignCount;
+        document.getElementById('statConfidence').textContent = (STATE.confidence * 100).toFixed(1) + '%';
+        document.getElementById('statTemp').textContent = STATE.temperature.toFixed(2) + ' K';
+        document.getElementById('statState').textContent = STATE.temperature < 0.5 ? 'COLD' : 'WARM';
+        document.getElementById('statState').style.color = STATE.temperature < 0.5 ? 'var(--blue)' : 'var(--red)';
+
+        // Normalize face weights
+        const total = STATE.faceWeights.alpha + STATE.faceWeights.beta + STATE.faceWeights.gamma;
+        const na = STATE.faceWeights.alpha / total;
+        const nb = STATE.faceWeights.beta / total;
+        const ng = STATE.faceWeights.gamma / total;
+
+        document.getElementById('faceAlpha').textContent = na.toFixed(2);
+        document.getElementById('faceBeta').textContent = nb.toFixed(2);
+        document.getElementById('faceGamma').textContent = ng.toFixed(2);
+        document.getElementById('barAlpha').style.width = (na * 100) + '%';
+        document.getElementById('barBeta').style.width = (nb * 100) + '%';
+        document.getElementById('barGamma').style.width = (ng * 100) + '%';
+
+        document.getElementById('particleCount').textContent = alive + ' PARTICLES';
+
+        // Decay entropy over time
+        STATE.entropy = Math.max(0, STATE.entropy - 0.001);
+        STATE.vacuum = Math.max(0, STATE.vacuum - 0.0005);
+        STATE.temperature = Math.max(0.01, STATE.temperature - 0.001);
+    }
+
+    // ─── MOUSE CONTROLS ───
+    let mouseX = 0, mouseY = 0;
+    let isDragging = false;
+    let cameraAngle = 0;
+    let cameraHeight = 2;
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            cameraAngle += e.movementX * 0.005;
+            cameraHeight += e.movementY * 0.01;
+            cameraHeight = Math.max(-5, Math.min(8, cameraHeight));
+        }
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    document.addEventListener('mousedown', (e) => {
+        if (e.target.tagName !== 'BUTTON') isDragging = true;
+    });
+    document.addEventListener('mouseup', () => isDragging = false);
+
+    // Mouse wheel zoom
+    document.addEventListener('wheel', (e) => {
+        const zoomSpeed = 0.003;
+        camera.position.multiplyScalar(1 + e.deltaY * zoomSpeed);
+        const dist = camera.position.length();
+        if (dist < 5) camera.position.setLength(5);
+        if (dist > 30) camera.position.setLength(30);
+    });
+
+    // ─── RESIZE ───
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ─── FPS ───
+    let frameCount = 0, lastFpsTime = performance.now();
+
+    // ─── ANIMATION LOOP ───
+    function animate() {
+        requestAnimationFrame(animate);
+        const time = performance.now() * 0.001;
+
+        // Camera orbit
+        if (!isDragging) {
+            cameraAngle += 0.002;
+        }
+        const camDist = camera.position.length();
+        camera.position.x = Math.sin(cameraAngle) * camDist * Math.cos(cameraHeight * 0.1);
+        camera.position.y = cameraHeight;
+        camera.position.z = Math.cos(cameraAngle) * camDist * Math.cos(cameraHeight * 0.1);
+        camera.lookAt(0, 0, 0);
+
+        // Rotate pyramid slowly
+        tetraMesh.rotation.y += 0.002;
+        wireMesh.rotation.y += 0.002;
+
+        // T-CHIP animation
+        if (!STATE.frozen) {
+            tchipMesh.rotation.x += 0.01;
+            tchipMesh.rotation.y += 0.015;
+            tchipGlow.rotation.x += 0.008;
+            tchipGlow.rotation.y += 0.012;
+        }
+
+        // T-CHIP pulse
+        const pulse = 1 + Math.sin(time * 3) * 0.1;
+        tchipMesh.scale.setScalar(pulse);
+        tchipGlowMat.opacity = 0.05 + Math.sin(time * 2) * 0.03;
+        tchipMat.emissiveIntensity = 0.3 + Math.sin(time * 4) * 0.2;
+
+        // Vertex marker pulse
+        vertexMarkers.forEach((m, i) => {
+            const s = 1 + Math.sin(time * 2 + i) * 0.2;
+            m.scale.setScalar(s);
+        });
+
+        // Wireframe color shift based on state
+        if (STATE.glow === 'red') {
+            wireMat.color.lerp(COLORS.red, 0.05);
+        } else if (STATE.glow === 'gold') {
+            wireMat.color.lerp(COLORS.gold, 0.05);
+        } else {
+            wireMat.color.lerp(COLORS.blue, 0.05);
+        }
+
+        // Update particles
+        STATE.particles = STATE.particles.filter(p => p.alive);
+        STATE.particles.forEach(p => p.update());
+
+        // Auto-inject occasional particles
+        if (!STATE.frozen && Math.random() < 0.03 && STATE.particles.length < 200) {
+            const types = ['logic', 'illogic', 'context', 'data'];
+            STATE.particles.push(new Particle(types[Math.floor(Math.random() * types.length)]));
+        }
+
+        // Stars twinkle
+        stars.rotation.y += 0.0001;
+        stars.rotation.x += 0.00005;
+
+        // Update UI every 10 frames
+        frameCount++;
+        if (frameCount % 10 === 0) updateUI();
+
+        // FPS counter
+        if (time * 1000 - lastFpsTime > 1000) {
+            document.getElementById('fpsCounter').textContent = frameCount + ' FPS';
+            frameCount = 0;
+            lastFpsTime = time * 1000;
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    // ─── KEYBOARD SHORTCUTS ───
+    document.addEventListener('keydown', (e) => {
+        switch(e.key.toLowerCase()) {
+            case 'i': injectParticles(); break;
+            case 'p': applyPulse(); break;
+            case 'f': triggerFreeze(); break;
+            case 's': subtractiveSnap(); break;
+            case 'r': resetSystem(); break;
+        }
+    });
+
+    // ─── INIT ───
+    updateTCHIPGlow();
+    injectParticles(); // Start with some particles
+    animate();
+
+    // Initial message
+    setTimeout(() => {
+        showMessage('🧲 TRIGNUM 300M', 'Magnetic Trillage Visualizer — Active', 'blue');
+    }, 500);
+    </script>
+</body>
+</html>

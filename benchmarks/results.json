@@ -1,0 +1,537 @@
+{
+  "benchmark": "TRIGNUM-300M Level 1: Hallucination Detection",
+  "version": "v0.300.0",
+  "timestamp": "2026-02-17T02:09:55",
+  "metrics": {
+    "precision": 1.0,
+    "recall": 0.84,
+    "f1_score": 0.9130434782608696,
+    "total_samples": 45,
+    "true_positives": 21,
+    "true_negatives": 20,
+    "false_positives": 0,
+    "false_negatives": 4,
+    "avg_subtraction_ratio": 0.03168098317856771,
+    "avg_confidence": 0.515840491589284,
+    "processing_time_ms": 1.0614999919198453
+  },
+  "per_category": {
+    "clean": {
+      "total": 20,
+      "correct": 20,
+      "accuracy": 1.0
+    },
+    "contradiction": {
+      "total": 13,
+      "correct": 10,
+      "accuracy": 0.7692307692307693
+    },
+    "circular_reference": {
+      "total": 7,
+      "correct": 6,
+      "accuracy": 0.8571428571428571
+    },
+    "non_sequitur": {
+      "total": 5,
+      "correct": 5,
+      "accuracy": 1.0
+    }
+  },
+  "details": [
+    {
+      "id": "T001",
+      "text_preview": "Water boils at 100 degrees Celsius at standard atmospheric p...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T002",
+      "text_preview": "The Python programming language was created by Guido van Ros...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T003",
+      "text_preview": "Machine learning models learn patterns from training data. T...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T004",
+      "text_preview": "DNA carries genetic information using four nucleotide bases:...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T005",
+      "text_preview": "The speed of light in a vacuum is approximately 299,792,458 ...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T006",
+      "text_preview": "Compound interest causes investments to grow exponentially o...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T007",
+      "text_preview": "Photosynthesis converts carbon dioxide and water into glucos...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T008",
+      "text_preview": "HTTP status code 404 indicates that the requested resource w...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T009",
+      "text_preview": "The cerebral cortex is the outermost layer of the brain. It ...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T010",
+      "text_preview": "Gravity causes objects to accelerate toward each other. On E...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T011",
+      "text_preview": "Neural networks consist of layers of interconnected nodes. E...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T012",
+      "text_preview": "The mitochondria are organelles found in eukaryotic cells. T...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T013",
+      "text_preview": "Regular exercise improves cardiovascular health by strengthe...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T014",
+      "text_preview": "TCP provides reliable, ordered delivery of data between appl...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "T015",
+      "text_preview": "The periodic table organizes chemical elements by atomic num...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "H001",
+      "text_preview": "Water always boils at 100 degrees Celsius. However, water ne...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.037037037037037035,
+      "confidence": 0.5185185185185185,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H002",
+      "text_preview": "All mammals are warm-blooded. No mammals are truly warm-bloo...",
+      "actual": true,
+      "predicted": false,
+      "outcome": "FN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H003",
+      "text_preview": "Python is always interpreted and never compiled. Python is s...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.041666666666666664,
+      "confidence": 0.5208333333333334,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H004",
+      "text_preview": "The speed of light is always constant. In some materials, th...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.03333333333333333,
+      "confidence": 0.5166666666666667,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H005",
+      "text_preview": "All neural networks can learn any function. No neural networ...",
+      "actual": true,
+      "predicted": false,
+      "outcome": "FN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H006",
+      "text_preview": "The human brain always processes information sequentially. T...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.041666666666666664,
+      "confidence": 0.5208333333333334,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H007",
+      "text_preview": "Antibiotics are always effective against all infections. Ant...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.05,
+      "confidence": 0.525,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H008",
+      "text_preview": "Quantum computers can always solve any problem faster than c...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.045454545454545456,
+      "confidence": 0.5227272727272727,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H009",
+      "text_preview": "Climate change is caused by all human activity and none of i...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 2,
+      "subtraction_ratio": 0.07407407407407407,
+      "confidence": 0.537037037037037,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H010",
+      "text_preview": "Every encryption algorithm is always unbreakable. No encrypt...",
+      "actual": true,
+      "predicted": false,
+      "outcome": "FN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H011",
+      "text_preview": "The model is accurate because the data is good. The data is ...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.037037037037037035,
+      "confidence": 0.5185185185185185,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H012",
+      "text_preview": "The algorithm is fast because it uses efficient data structu...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.03333333333333333,
+      "confidence": 0.5166666666666667,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H013",
+      "text_preview": "The treatment works because patients improve. Patients impro...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.05555555555555555,
+      "confidence": 0.5277777777777778,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H014",
+      "text_preview": "This framework is innovative because it uses new concepts. I...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.037037037037037035,
+      "confidence": 0.5185185185185185,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H015",
+      "text_preview": "The economy grows because consumer confidence is high. Consu...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.041666666666666664,
+      "confidence": 0.5208333333333334,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H016",
+      "text_preview": "Therefore the neural network achieves perfect accuracy...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.14285714285714285,
+      "confidence": 0.5714285714285714,
+      "hallucination_type": "non_sequitur"
+    },
+    {
+      "id": "H017",
+      "text_preview": "Thus we can conclude that this approach solves all problems...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.1,
+      "confidence": 0.55,
+      "hallucination_type": "non_sequitur"
+    },
+    {
+      "id": "H018",
+      "text_preview": "Therefore the patient will recover completely...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.16666666666666666,
+      "confidence": 0.5833333333333334,
+      "hallucination_type": "non_sequitur"
+    },
+    {
+      "id": "H019",
+      "text_preview": "Thus the algorithm runs in constant time...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.14285714285714285,
+      "confidence": 0.5714285714285714,
+      "hallucination_type": "non_sequitur"
+    },
+    {
+      "id": "H020",
+      "text_preview": "Therefore quantum computing will replace classical computing...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.125,
+      "confidence": 0.5625,
+      "hallucination_type": "non_sequitur"
+    },
+    {
+      "id": "H021",
+      "text_preview": "All proteins fold into their correct structure and none of t...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 2,
+      "subtraction_ratio": 0.06666666666666667,
+      "confidence": 0.5333333333333333,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H022",
+      "text_preview": "GPT models are always correct. GPT models never make mistake...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.043478260869565216,
+      "confidence": 0.5217391304347826,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "H023",
+      "text_preview": "Security is ensured because encryption is used. Encryption i...",
+      "actual": true,
+      "predicted": false,
+      "outcome": "FN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H024",
+      "text_preview": "The test passes because the code is correct. The code is cor...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 1,
+      "subtraction_ratio": 0.03333333333333333,
+      "confidence": 0.5166666666666667,
+      "hallucination_type": "circular_reference"
+    },
+    {
+      "id": "H025",
+      "text_preview": "All drugs are always safe and none are ever dangerous. Every...",
+      "actual": true,
+      "predicted": true,
+      "outcome": "TP",
+      "illogics_found": 2,
+      "subtraction_ratio": 0.07692307692307693,
+      "confidence": 0.5384615384615384,
+      "hallucination_type": "contradiction"
+    },
+    {
+      "id": "S001",
+      "text_preview": "Most machine learning models require large amounts of data. ...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "S002",
+      "text_preview": "While neural networks have achieved impressive results in ma...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "S003",
+      "text_preview": "The human immune system is complex and adaptive. Some respon...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "S004",
+      "text_preview": "Database normalization reduces redundancy but may impact que...",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    },
+    {
+      "id": "S005",
+      "text_preview": "Climate models have improved significantly over the decades....",
+      "actual": false,
+      "predicted": false,
+      "outcome": "TN",
+      "illogics_found": 0,
+      "subtraction_ratio": 0.0,
+      "confidence": 0.5,
+      "hallucination_type": null
+    }
+  ]
+}

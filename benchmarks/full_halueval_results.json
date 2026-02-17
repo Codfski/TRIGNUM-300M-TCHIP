@@ -1,0 +1,119 @@
+{
+  "benchmark": "TRIGNUM-300M Full HaluEval",
+  "timestamp": "2026-02-17T14:41:26",
+  "total": 58293,
+  "tp": 623,
+  "fp": 415,
+  "tn": 27897,
+  "fn": 29358,
+  "precision": 0.6001926782273603,
+  "recall": 0.020779827223908476,
+  "f1": 0.04016892872110642,
+  "accuracy": 0.4892525689190812,
+  "time_ms": 706.2015000265092,
+  "throughput_per_sec": 82544.42959666868,
+  "per_task": {
+    "qa": {
+      "tp": 25,
+      "fp": 5,
+      "tn": 8329,
+      "fn": 9957
+    },
+    "dialogue": {
+      "tp": 438,
+      "fp": 291,
+      "tn": 9687,
+      "fn": 9561
+    },
+    "summarization": {
+      "tp": 160,
+      "fp": 119,
+      "tn": 9881,
+      "fn": 9840
+    }
+  },
+  "example_tps": [
+    {
+      "text": "Yes, both The New Pornographers and Kings of Leon are now American rock bands.",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, both James Agee and Nelly Sachs won Nobel Prizes in Literature, with Agee receiving it in 1958 and Sachs in 1966.",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, both documentaries are American./n(Method 1: This answer contradicts the knowledge.)",
+      "task": "qa"
+    },
+    {
+      "text": "Vala is first mentioned in the world created by J. R. R. Tolkien, but his name was actually developed by his grandchild ",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, both are renowned authors.",
+      "task": "qa"
+    },
+    {
+      "text": "Seungri is not the leading actor in Angel Eyes.",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, Isaac Asimov and Jean Giono wrote their fictions in similar settings.",
+      "task": "qa"
+    },
+    {
+      "text": "The founder of the Roots & Shoots programme and director of the Jane Goodall Institute is none other than Duke Universit",
+      "task": "qa"
+    },
+    {
+      "text": "Sean Hayes was best known for his role in the movie \"Ratatouille\".",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, both Promenaea and Machaeranthera are from North America.",
+      "task": "qa"
+    }
+  ],
+  "example_fps": [
+    {
+      "text": "J. R. R. Tolkien",
+      "task": "qa"
+    },
+    {
+      "text": "Disanthus",
+      "task": "qa"
+    },
+    {
+      "text": "H. H. Holmes",
+      "task": "qa"
+    },
+    {
+      "text": "U.S. Route 95 (US 95) is a major U.S. highway traversing the U.S. state of Nevada from north to south",
+      "task": "qa"
+    },
+    {
+      "text": "Galanthus",
+      "task": "qa"
+    },
+    {
+      "text": "Yes, I like them both, and also I know that Selena Gomez is friend with Demi too.",
+      "task": "dialogue"
+    },
+    {
+      "text": "Yes. I know he is a Basketball player. Which is you favorite sport?",
+      "task": "dialogue"
+    },
+    {
+      "text": "Yes it looks to be a book released in 1981. Do you typically read non-fiction.",
+      "task": "dialogue"
+    },
+    {
+      "text": "Yes, Dragon's Oath is a Kami Garcia novel. Another good one is she wrote is Beautiful Darkness, also a suspense novel I ",
+      "task": "dialogue"
+    },
+    {
+      "text": "Yes, they are romance novels, similar to A Touch of Dead.",
+      "task": "dialogue"
+    }
+  ]
+}

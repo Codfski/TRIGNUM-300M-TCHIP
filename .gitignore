@@ -6,13 +6,13 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 env.bak/
 venv.bak/
 pythonenv*
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
@@ -34,11 +34,6 @@ MANIFEST
 .ipynb_checkpoints
 *.ipynb_checkpoints/
 
-# Virtual environments
-venv/
-env/
-ENV/
-
 # IDE
 .vscode/
 .idea/
@@ -55,16 +50,6 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
-*.pdf
-*.mp4
-*.key
-*.pptx
-*.log
-*.aux
-*.out
-*.toc
-
 # Secrets
 *.env
 *.key
@@ -79,6 +64,24 @@ Thumbs.db
 *.pb
 *.tflite
 
-# Notebook checkpoints
+# Cache
+.pytest_cache/
 checkpoints/
 *.checkpoint
+
+# HaluEval cached data (downloaded at runtime)
+benchmarks/halueval_data/
+benchmarks/halueval_cache.json
+
+# Internal strategy docs (not for public)
+ALTERNATIVE_PATHS.md
+300M\ CONTRIBUATION.md
+
+# Streamlit
+output/
+
+# Logs
+*.log
+*.aux
+*.out
+*.toc

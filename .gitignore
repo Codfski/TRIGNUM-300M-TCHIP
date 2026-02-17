@@ -85,3 +85,6 @@ output/
 *.aux
 *.out
 *.toc
+
+LAUNCH_ACTIONS.md
+UNDP_EMAIL_DRAFT.txt

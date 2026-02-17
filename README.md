@@ -1,13 +1,29 @@
-# 🧲 TRIGNUM-300M: The Pre-Flight Check for Autonomous AI
+<div align="center">
+
+# 🧲 TRIGNUM-300M
+### The Pre-Flight Check for Autonomous AI
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Benchmarked](https://img.shields.io/badge/HaluEval-58%2C293_samples-green.svg)](#-benchmark-results)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18672142.svg)](https://doi.org/10.5281/zenodo.18672142)
 
-> **"You wouldn't let a plane take off without a pre-flight check.  
-> Why are we letting AI agents act without one?"**
+> **"You wouldn't let a plane take off without a pre-flight check.**  
+> **Why are we letting AI agents act without one?"**
+
+</div>
 
 ---
+
+<div align="center">
+  <!-- 
+    TODO: Add your demo GIF here! 
+    1. Record demo/index.html with ScreenToGif
+    2. Save as assets/trignum_demo.gif
+    3. Uncomment line below:
+  -->
+  <!-- <img src="assets/trignum_demo.gif" width="800" alt="TRIGNUM-300M Demo" /> -->
+</div>
 
 ## What Is This?
 

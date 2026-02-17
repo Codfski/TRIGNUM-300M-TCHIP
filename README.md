@@ -228,7 +228,7 @@ MIT License — see [LICENSE](LICENSE).
 ## 📞 Contact
 
 **TRACE ON LAB**  
-📧 Codfski@gmail.com
+📧 traceonlab@proton.me
 Linkedin:https://www.linkedin.com/in/traceonlab-codfski
 
 ---

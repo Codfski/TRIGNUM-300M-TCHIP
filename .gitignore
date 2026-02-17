@@ -85,3 +85,93 @@ output/
 *.aux
 *.out
 *.toc
+
+LAUNCH_ACTIONS.md
+UNDP_EMAIL_DRAFT.txt
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets
+*.env
+*.key
+*.pem
+*.secret
+
+# Large files
+*.weights
+*.h5
+*.pth
+*.onnx
+*.pb
+*.tflite
+
+# Cache
+.pytest_cache/
+checkpoints/
+*.checkpoint
+
+# HaluEval cached data (downloaded at runtime)
+benchmarks/halueval_data/
+benchmarks/halueval_cache.json
+
+# Internal strategy docs (not for public)
+ALTERNATIVE_PATHS.md
+300M\ CONTRIBUATION.md
+
+# Streamlit
+output/
+
+# Logs
+*.log
+*.aux
+*.out
+*.toc

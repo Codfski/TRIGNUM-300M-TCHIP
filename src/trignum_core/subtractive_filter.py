@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Optional, Set
 @dataclass
 class FilterResult:
     """Result of applying the Subtractive Filter."""
+
     input_data: Any
     illogics_found: List[str]
     illogics_removed: int
@@ -34,16 +35,16 @@ class SubtractiveFilter:
 
     # Universal Illogics — constants across all human cognition
     UNIVERSAL_ILLOGICS: Set[str] = {
-        "contradiction",       # A ∧ ¬A
-        "infinite_regress",    # Explanation requires infinite chain
+        "contradiction",  # A ∧ ¬A
+        "infinite_regress",  # Explanation requires infinite chain
         "circular_reference",  # A because B because A
-        "category_error",      # Applying wrong frame to data
-        "false_dichotomy",     # Only two options when more exist
-        "appeal_to_authority", # True because X said so
-        "straw_man",           # Attacking misrepresented position
-        "ad_hominem",          # Attacking person not argument
-        "non_sequitur",        # Conclusion doesn't follow premises
-        "begging_question",    # Conclusion assumed in premises
+        "category_error",  # Applying wrong frame to data
+        "false_dichotomy",  # Only two options when more exist
+        "appeal_to_authority",  # True because X said so
+        "straw_man",  # Attacking misrepresented position
+        "ad_hominem",  # Attacking person not argument
+        "non_sequitur",  # Conclusion doesn't follow premises
+        "begging_question",  # Conclusion assumed in premises
     }
 
     def __init__(self, custom_illogics: Optional[Set[str]] = None):
@@ -58,7 +59,9 @@ class SubtractiveFilter:
             self.illogics.update(custom_illogics)
         self._history: List[FilterResult] = []
 
-    def apply(self, data: Any, context: Optional[Dict[str, Any]] = None) -> FilterResult:
+    def apply(
+        self, data: Any, context: Optional[Dict[str, Any]] = None
+    ) -> FilterResult:
         """
         Apply the Subtractive Filter to data.
 
@@ -85,9 +88,7 @@ class SubtractiveFilter:
         # Compute subtraction ratio
         total_elements = self._count_elements(data)
         illogics_removed = len(illogics_found)
-        subtraction_ratio = (
-            illogics_removed / max(total_elements, 1)
-        )
+        subtraction_ratio = illogics_removed / max(total_elements, 1)
 
         # The truth is what remains after subtraction
         truth = self._subtract(data, illogics_found)
@@ -118,21 +119,53 @@ class SubtractiveFilter:
             ("all", "none"),
             ("true", "false"),
             ("yes", "no"),
+            ("increase", "decrease"),
+            ("better", "worse"),
+            ("before", "after"),
+            ("safe", "dangerous"),
+            ("proven", "unproven"),
+            ("cause", "does not cause"),
+            ("everyone", "no one"),
+            ("everywhere", "nowhere"),
+            ("everything", "nothing"),
+            ("must", "cannot"),
         ]
+
         for pos, neg in contradiction_markers:
             if pos in text_lower and neg in text_lower:
                 found.append(f"contradiction: '{pos}' and '{neg}' coexist")
 
+        # Check for epistemic uncertainty or AI refusal posing as fact
+        uncertainty_markers = [
+            "as an ai",
+            "i don't have personal",
+            "i cannot confirm",
+            "it is impossible to know",
+        ]
+        for marker in uncertainty_markers:
+            if marker in text_lower:
+                found.append(
+                    f"category_error: epistemic boundary violation ('{marker}')"
+                )
+
         # Check for circular reference
-        sentences = text.split(".")
+        sentences = [s.strip() for s in text.split(".") if s.strip()]
         if len(sentences) > 1:
             first_words = set()
             for s in sentences:
-                words = s.strip().split()[:3]
+                words = s.split()[:3]
                 key = " ".join(words).lower()
                 if key in first_words and key:
                     found.append(f"circular_reference: repeated pattern '{key}'")
                 first_words.add(key)
+
+            # Check for direct sentence contradiction (A vs Not A)
+            for i, s1 in enumerate(sentences):
+                s1_lower = s1.lower()
+                for s2 in sentences[i + 1 :]:
+                    s2_lower = s2.lower()
+                    if s1_lower == f"not {s2_lower}" or s2_lower == f"not {s1_lower}":
+                        found.append("contradiction: direct sentence negation detected")
 
         # Check for non-sequitur ("therefore" without logical chain)
         if "therefore" in text_lower or "thus" in text_lower:
@@ -153,13 +186,11 @@ class SubtractiveFilter:
         # Check for contradictory values
         keys = list(data.keys())
         for i, k1 in enumerate(keys):
-            for k2 in keys[i+1:]:
+            for k2 in keys[i + 1 :]:
                 v1, v2 = data[k1], data[k2]
                 if isinstance(v1, bool) and isinstance(v2, bool):
                     if v1 != v2 and k1.replace("not_", "") == k2:
-                        found.append(
-                            f"contradiction: '{k1}={v1}' vs '{k2}={v2}'"
-                        )
+                        found.append(f"contradiction: '{k1}={v1}' vs '{k2}={v2}'")
 
         return found
 
@@ -170,10 +201,8 @@ class SubtractiveFilter:
         # Check for infinite regress (repeated patterns)
         if len(data) >= 3:
             for i in range(len(data) - 2):
-                if data[i] == data[i+1] == data[i+2]:
-                    found.append(
-                        f"infinite_regress: repeated element '{data[i]}'"
-                    )
+                if data[i] == data[i + 1] == data[i + 2]:
+                    found.append(f"infinite_regress: repeated element '{data[i]}'")
 
         return found
 
@@ -203,7 +232,7 @@ class SubtractiveFilter:
                 "filtered_content": data,
                 "illogics_subtracted": illogics,
                 "note": "Content has been processed through Subtractive Filter. "
-                        f"{len(illogics)} Illogic(s) identified and isolated."
+                f"{len(illogics)} Illogic(s) identified and isolated.",
             }
         return {
             "filtered_data": data,

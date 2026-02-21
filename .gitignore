@@ -72,6 +72,10 @@ checkpoints/
 # HaluEval cached data (downloaded at runtime)
 benchmarks/halueval_data/
 benchmarks/halueval_cache.json
+benchmarks/full_halueval_results.json
+
+# Benchmark run output logs (raw text snapshots)
+benchmarks/*_out.txt
 
 # Internal strategy docs (not for public)
 ALTERNATIVE_PATHS.md

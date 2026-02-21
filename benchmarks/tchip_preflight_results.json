@@ -1,0 +1,67 @@
+{
+  "report": "T-CHIP Pre-Flight Efficacy Report",
+  "generated_at": "2026-02-22T00:54:08",
+  "total_samples": 58338,
+  "total_time_ms": 1109.4909000094049,
+  "throughput_per_sec": 52580.8729026128,
+  "aggregate": {
+    "tp": 922,
+    "fp": 572,
+    "tn": 27760,
+    "fn": 29084,
+    "precision": 0.6171352074966533,
+    "recall": 0.030727187895754182,
+    "f1": 0.058539682539682544,
+    "accuracy": 0.49165209640371627
+  },
+  "per_database": {
+    "[A] TRIGNUM Structural Suite": {
+      "total": 45,
+      "tp": 21,
+      "fp": 0,
+      "tn": 20,
+      "fn": 4,
+      "precision": 1.0,
+      "recall": 0.84,
+      "f1": 0.9130434782608696,
+      "accuracy": 0.9111111111111111,
+      "time_ms": 1.0774999973364174
+    },
+    "[B] HaluEval QA": {
+      "total": 18316,
+      "tp": 32,
+      "fp": 5,
+      "tn": 8329,
+      "fn": 9950,
+      "precision": 0.8648648648648649,
+      "recall": 0.003205770386696053,
+      "f1": 0.006387863060185648,
+      "accuracy": 0.45648613234330637,
+      "time_ms": 117.40200000349432
+    },
+    "[C] HaluEval Dialogue": {
+      "total": 19977,
+      "tp": 443,
+      "fp": 293,
+      "tn": 9685,
+      "fn": 9556,
+      "precision": 0.6019021739130435,
+      "recall": 0.0443044304430443,
+      "f1": 0.08253376804843968,
+      "accuracy": 0.5069830304850578,
+      "time_ms": 259.5238999929279
+    },
+    "[D] HaluEval Summarization": {
+      "total": 20000,
+      "tp": 426,
+      "fp": 274,
+      "tn": 9726,
+      "fn": 9574,
+      "precision": 0.6085714285714285,
+      "recall": 0.0426,
+      "f1": 0.07962616822429906,
+      "accuracy": 0.5076,
+      "time_ms": 715.5857000034302
+    }
+  }
+}

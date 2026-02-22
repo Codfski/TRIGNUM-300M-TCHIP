@@ -1,4 +1,38 @@
-# TRIGNUM Future Suggestions & Roadmap
+# 🗺 TRIGNUM-300M Hallucination Detection Roadmap
+
+```mermaid
+flowchart TD
+    A[Level-1 Pre-Flight] -->|Current| B[TRIGNUM Structural Suite]
+    A -->|Current| C[HaluEval QA/Dialogue/Summarization]
+    A -->|Current| D[Subtractive Filter: Baseline]
+
+    B --> E[Metrics: High Precision / Low Recall]
+    C --> F[Metrics: Recall <5%]
+    D --> G[Speed: 52k samples/sec]
+
+    %% Level-2 Expansion
+    H[Level-2 Calibration] -->|Integrate| I[TruthfulQA, MedHallu, Vectara HHEM]
+    H -->|Adaptive| J[Custom Illogics & Thresholds per Domain]
+    H -->|Explainable| K[FilterResult Traces / Heatmaps]
+    H -->|Human-in-the-loop| L[Active Feedback Loops]
+
+    %% Level-3 Expansion
+    M[Level-3 Certification] -->|Cross-Domain| N[Multilingual: Arabic, Turkish, Chinese, etc.]
+    M -->|Multi-Hop Reasoning| O[Long-Form & Compounding Hallucination Detection]
+    M -->|Governance & Epistemic| P[AI Deployment Readiness & Trust Scores]
+
+    %% Connect Levels
+    E & F & G --> H
+    I & J & K & L --> M
+```
+
+**📝 Key Notes for the Diagram:**
+
+- **Level-1**: Current state, baseline evaluation, small structured datasets, Subtractive Filter working.
+- **Level-2**: Expand datasets, integrate adaptive thresholds, introduce explainable analytics, human-in-the-loop feedback.
+- **Level-3**: Cross-domain generalization, long-form & multi-hop reasoning detection, multilingual support, pre-flight certification for safe deployment.
+
+---
 
 A structured roadmap for future TRIGNUM evolution, broken down into "Copilot-ready" tracks. Each represents a concrete action or research track to expand hallucination detection and overall AI epistemic reliability.
 

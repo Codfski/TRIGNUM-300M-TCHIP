@@ -34,6 +34,44 @@ flowchart TD
 
 ---
 
+## ⏱ TRIGNUM-300M Pre-Flight & Expansion Timeline
+
+```mermaid
+gantt
+    title TRIGNUM-300M Pre-Flight & Expansion Roadmap
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section Level-1: Baseline & Pre-Flight
+    Assemble Current Datasets            :done,    l1d1, 2026-02-01, 15d
+    Run Subtractive Filter Baseline      :done,    l1d2, 2026-02-16, 7d
+    Aggregate Metrics Analysis           :done,    l1d3, 2026-02-23, 3d
+    Level-1 Internal Report              :done,    l1d4, 2026-02-26, 2d
+
+    section Level-2: Calibration & Expansion
+    Integrate TruthfulQA                 :active,  l2d1, 2026-03-01, 14d
+    Integrate MedHallu / Vectara HHEM    :active,  l2d2, 2026-03-10, 14d
+    Custom Illogics per Domain           :         l2d3, 2026-03-20, 10d
+    FilterResult Explainable Analytics   :         l2d4, 2026-03-30, 7d
+    Human-in-the-Loop Feedback Loops     :         l2d5, 2026-04-07, 14d
+    Level-2 Metrics & Adjustment         :         l2d6, 2026-04-21, 7d
+
+    section Level-3: Certification & Deployment
+    Multilingual & Cross-Domain Testing  :         l3d1, 2026-05-01, 21d
+    Multi-Hop & Long-Form Reasoning      :         l3d2, 2026-05-22, 14d
+    Governance / AI Deployment Readiness :         l3d3, 2026-06-05, 10d
+    Public Pre-Flight Certification      :         l3d4, 2026-06-15, 7d
+```
+
+**🔹 Key Recommendations:**
+
+- **Level-1**: Finalize pre-flight metrics (already done: high precision, low recall) and archive baseline.
+- **Level-2**: Expand evaluation with TruthfulQA, MedHallu, Vectara HHEM, implement adaptive thresholds, explainable outputs, and human feedback.
+- **Level-3**: Test cross-domain generalization, multilingual capability, multi-hop reasoning, and formal governance readiness.
+- **Future Research**: Explore fine-grained hallucination categories, dynamic illogic learning, and real-time LLM monitoring for operational deployment.
+
+---
+
 A structured roadmap for future TRIGNUM evolution, broken down into "Copilot-ready" tracks. Each represents a concrete action or research track to expand hallucination detection and overall AI epistemic reliability.
 
 ## 6️⃣ Strategic Roadmap (Bullet-Proof Titles)

@@ -95,6 +95,16 @@ LLM Output → Subtractive Filter → [PASS] 🔵 → Agent Executes
 
 ---
 
+## 🤖 The Missing "Agentic Validator"
+
+In the context of the recent shift towards **Agentic Reasoning**, autonomous LLMs are moving from static prompts to dynamic _thought-action_ loops involving planning, tool-use, and multi-agent collaboration.
+
+Current systems rely heavily on probabilistic models to act as the "Critic/Evaluator" or use "Validator-Driven Feedback" via unit tests for code or simulators for robotics. **But there has been no validator for pure logic.** If an agent hallucinates a non-sequitur or circular justification during its internal planning phase, the error cascades.
+
+TRIGNUM-300M fills this exact gap. It acts as a deterministic, 1ms **Validator-Driven Feedback** gate. It halts execution if the agent's internal thought (`zt`) contains a structural illogic, providing an immediate failure signal (`rt = 0`) _before_ the agent commits to an irreversible external action (`at`).
+
+---
+
 ## 🔺 Core Architecture
 
 ### The Trignum Pyramid

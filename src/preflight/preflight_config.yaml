@@ -1,0 +1,20 @@
+# Pre-Flight Pipeline Configuration
+
+datasets:
+  halueval:
+    enabled: true
+    samples: 1000
+    source: "huggingface"
+  truthfulqa:
+    enabled: true
+    samples: "all"
+    source: "huggingface"
+
+filter:
+  confidence_threshold: 0.5
+  enable_circular_detection: true
+
+logging:
+  level: "INFO"
+  format: "json"
+  output_dir: "logs/preflight"

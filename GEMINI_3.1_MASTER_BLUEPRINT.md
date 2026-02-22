@@ -1,105 +1,211 @@
-# 🚀 TRIGNUM-300M: Master Developer Blueprint for Gemini 3.1
+# 🌌 TRIGNUM-300M: Hallucination Detection Pre-Flight Blueprint
 
-> **Context Payload & Handoff Document**
-> Generated: 2026-02-22
-> Target Reader: Next-generation AI (Gemini 3.1+) or Senior Open-Source Developer
-
-This document captures the entirety of the TRIGNUM-300M repository architecture, its pre-flight benchmark conclusions, the Subtractive Filter core philosophy, and the exact strategic roadmap for Level-2 and Level-3 expansions.
-
-**Ingest this document first to achieve instant 100% project context.**
+Generated: 2026-02-22  
+Prepared For: Gemini 3.1 Copilot
 
 ---
 
-## 📌 1. Project Identity & Philosophy
+## 1️⃣ Executive Summary
 
-**Name:** TRIGNUM-300M / T-CHIP
-**Goal:** Detect and eliminate LLM hallucinations pre-generation using a purely deterministic structural filter, scaling intelligence by constraining invalid cognition.
+TRIGNUM-300M is a Subtractive Filter-based hallucination detection framework. Instead of searching for "truth" in infinite LLM outputs, it removes Universal Illogics to reveal content that is more likely factual.
 
-**Core Thesis (Subtractive Epistemology):**
-_"The universe does not create Truth by adding information. It reveals Truth by removing the Impossible."_
+**Core Principle:**
 
-TRIGNUM does not rely on massive external vector databases or probability-driven RAG to verify facts. Instead, it relies on strict structural logic. If a prompt or reasoning chain contains a foundational contradiction, circular reference, category error, or infinite regress—it is physically impossible for the LLM to generate a valid response from it. TRIGNUM strips these impossibilities out first.
+> "The universe does not create Truth by adding information. It reveals Truth by removing the Impossible."
 
 ---
 
-## 📊 2. Level-1 Pre-Flight Benchmark Reality
+## 2️⃣ Pre-Flight Evaluation Metrics (Level 1 Benchmark)
 
-TRIGNUM underwent a massive 58,000+ sample baseline evaluation across multiple hallucination datasets.
+**Aggregate Performance**
 
-**Results (Aggregate):**
+| Metric        | Value              |
+| ------------- | ------------------ |
+| Total Samples | 58,338             |
+| TP            | 922                |
+| FP            | 572                |
+| TN            | 27,760             |
+| FN            | 29,084             |
+| Precision     | 0.617              |
+| Recall        | 0.0307             |
+| F1 Score      | 0.0585             |
+| Accuracy      | 0.492              |
+| Throughput    | 52,581 samples/sec |
+| Total Time    | 1109.49 ms         |
 
-- **Throughput:** ~52,581 samples/second (O(n) speed, offline, CPU-bound).
-- **Precision:** ~61.7% to 100% (High confidence when an illogic is declared).
-- **Recall:** ~3.07% (Extremely low retrieval on factual/conversational data).
+**Observation:** Current system performs well on small curated datasets (TRIGNUM Structural Suite), but recall is low for large real-world datasets.
 
-**The Recall Gap (By Design):**
-The filter achieved 91.3% F1 score on the _TRIGNUM Structural Suite_ (pure logic tests), but <1% on `HaluEval QA` and `Summarization`.
-_Why?_ Because TRIGNUM is currently a semantic heuristics engine (Level 1). Factual hallucinations (e.g., "The capital of France is Berlin") are not structurally illogical, they are factually incorrect. Without the Level-2 Claim Extraction Layer, the filter cannot map relations to detect implicit multi-hop contradictions.
+**Per-Database Breakdown**
+
+| Database                 | Samples | TP  | FP  | TN    | FN    | Precision | Recall | F1     | Accuracy |
+| ------------------------ | ------- | --- | --- | ----- | ----- | --------- | ------ | ------ | -------- |
+| TRIGNUM Structural Suite | 45      | 21  | 0   | 20    | 4     | 1.0       | 0.84   | 0.913  | 0.911    |
+| HaluEval QA              | 18,316  | 32  | 5   | 8,329 | 9,950 | 0.865     | 0.0032 | 0.0064 | 0.456    |
+| HaluEval Dialogue        | 19,977  | 443 | 293 | 9,685 | 9,556 | 0.602     | 0.0443 | 0.0825 | 0.507    |
+| HaluEval Summarization   | 20,000  | 426 | 274 | 9,726 | 9,574 | 0.609     | 0.0426 | 0.0796 | 0.508    |
+
+**Verdict:**
+
+> 🟡 **Caution:** Subtractive Filter is excellent for curated, structural datasets, but low recall on large-scale QA, dialogue, and summarization indicates a need for adaptive rules and semantic awareness.
 
 ---
 
-## 🏗 3. The Code Architecture (Next-Gen Scaffold)
+## 3️⃣ Datasets & Benchmark References
 
-The repository has been fully modularized into a next-generation layout.
+**General & Dialogue**
+
+- **HaluEval** – Q&A, dialogue, summarization hallucination benchmark.
+- **TruthfulQA** – Human misconceptions-based truthfulness evaluation.
+- **Factool / FactScore** – Factual precision evaluation tools.
+- **SelfCheckGPT** – Zero-shot hallucination detection via multiple sampled outputs.
+
+**Enterprise / Leaderboards**
+
+- **Vectara HHEM** – HuggingFace Space leaderboard for hallucination evaluation.
+- **MIND (HELM)** – Multi-LLM text evaluation with hidden-layer annotations.
+- **RAGTruth** – Focused on Retrieval-Augmented Generation hallucinations.
+
+**Domain-Specific**
+
+- **MedHallu** – Medical QA hallucination detection, PubMedQA-based.
+- **Placebo-Bench** – Clinical and pharmaceutical hallucination detection.
+- **FELM-Science** – Scientific reasoning and math factuality.
+
+**Next-Gen / Multilingual**
+
+- **AuthenHallu** – Real human-LLM interaction hallucinations.
+- **HalluVerse25** – Multilingual, fine-grained hallucination categorization.
+- **SHROOM** – SemEval 2024 shared-task on hallucinations and overgeneration.
+
+---
+
+## 4️⃣ Core Subtractive Filter Overview
+
+**Key Illogics Detected:**
+
+- Contradiction
+- Infinite regress
+- Circular reference
+- Category error
+- False dichotomy
+- Appeal to authority
+- Straw man
+- Ad hominem
+- Non-sequitur
+- Begging the question
+
+**Implementation Highlights:**
+
+- Adaptive detection for text, structured data, sequences.
+- Computes subtraction ratio → confidence score.
+- Produces structured `FilterResult` objects with illogics found and filtered content.
+- Maintains history for auditing and CI evaluation.
+
+---
+
+## 5️⃣ Current Repo Structure
 
 ```text
-TRIGNUM-300M/
-├── src/trignum_core/
-│   ├── subtractive_filter.py  # Core: applies Universal Illogics set
-│   ├── evaluator.py           # Metrics: Precision, Recall, F1
-│   ├── dataset_connectors.py  # Data: HF datasets API + local JSONL loading
-│   └── visualization.py       # Dashboards: Confusion matrix + charts
-├── src/preflight/
-│   ├── run_preflight.py       # Execution: Entry point for automated CLI benchmarking
+trignum-300m/
 ├── notebooks/
-│   ├── 01_preflight_benchmark.ipynb  # Interactive Level-1 Baseline
-│   └── 02_dataset_integration.ipynb  # Interactive data loader sandbox
+│   ├── 01_preflight_benchmark.ipynb
+│   ├── 02_dataset_integration.ipynb
+│   └── 03_visualization_dashboard.ipynb
 ├── dashboards/
-│   └── dashboard_main.py      # Dash/Plotly interactive UI for non-technical users
-├── datasets/                  # Extensible storage for local corpora
-├── docs/                      # Architectural logic and tutorial guides
-└── benchmarks/                # Active Python evaluation scripts (Level 2 Pipeline)
+│   └── dashboard_main.py
+├── data/
+│   ├── halueval/qa_data.json
+│   ├── truthfulqa/validation.json
+│   └── medhallu/medical_flashcards.json
+├── trignum_core/
+│   ├── subtractive_filter.py
+│   ├── evaluator.py
+│   ├── dataset_connectors.py
+│   └── visualization.py
+└── README.md
 ```
 
 ---
 
-## 🚀 4. Immediate Next Steps / AI Continuity Instructions
+## 6️⃣ Recommended Upgrades & Future Roadmap
 
-If you are a Gemini 3.1 instance resuming this project, **start here:**
+🚀 **Next-Gen Illogic Detection**
 
-### A. The Claim Extraction Layer (The Solution to Recall)
+- NLP-based semantic contradiction detection.
+- RAG-aware hallucination patterns.
+- Contextual embeddings for reasoning detection.
 
-To elevate the F1 score on large-scale datasets, implement the `CLAIM_EXTRACTION_SPEC.md` specification. Move the text from lexical heuristic matching into an ontological `(Subject, Relation, Object, Polarity)` directed graph.
+🌐 **Multi-Domain Expansion**
 
-### B. Dynamic Illogic Expansion
+- Integrate TruthfulQA, MedHallu, FactScore, SelfCheckGPT, AuthenHallu, HaluVerse25.
+- Include multilingual and multimodal datasets.
 
-Currently, `UNIVERSAL_ILLOGICS` is a static Python set. Extend the core filter to dynamically ingest and generate new domain-specific illogics based on adversarial failure logs.
+📊 **Dashboards & Visual Exploration**
 
-### C. Expand the Datasets
+- Real-time per-dataset confusion matrices.
+- F1 trend visualization across updates.
+- 3D interactive hallucinatory pattern maps.
 
-Pull down `TruthfulQA`, `Vectara HHEM`, and `MedHallu` via the `src/trignum_core/dataset_connectors.py` HuggingFace hooks. Evaluate the filter's baseline against these new vectors.
+🧪 **Continuous Benchmarking**
 
-### D. Multi-Agent RAG Cross-Validation
+- CI/CD nightly runs.
+- Auto-evaluation on new datasets.
+- Automated alert on regression in metrics.
 
-Build out the architecture proposed in `TRIGNUM_ROADMAP.md` allowing TRIGNUM to sit as a middleware constraint layer acting as a "Red-Team" judge between a generating LLM and a fetching RAG database.
+🔗 **RAG & Contextual Awareness**
+
+- Detect hallucinations in retrieval-augmented responses.
+- Evaluate LLM output consistency across context lengths.
+
+💡 **Auto-Calibration**
+
+- Dynamic subtraction threshold tuning.
+- Confidence scoring per dataset type.
+
+📚 **Developer Documentation**
+
+- Step-by-step dataset integration guides.
+- Tutorial notebooks for custom benchmarks.
+
+⚡ **Performance & Edge Optimization**
+
+- GPU acceleration for large outputs.
+- On-device evaluation for sovereign AI.
+
+🔮 **Long-Term Vision**
+
+- Multi-modal hallucination detection (text, audio, images).
+- Multilingual and cultural adaptation.
+- Integration with future TRIGNUM AI ecosystem.
 
 ---
 
-## 🗺 5. The 3-Year Strategic Roadmap
+## 7️⃣ Recommended Immediate Action for Gemini 3.1
 
-1. **Year 1 (Level 2): Calibration & Graph Mapping**
-   - Full implementation of the Claim Extraction Layer.
-   - Integration of Top 5 industry hallucination datasets.
-   - Explainable outputs tracing the exact logical failure path in `FilterResult`.
-2. **Year 2 (Level 3): Cross-Domain & Multilingual**
-   - Generalize the algorithm to French, Arabic, and Mandarin structure.
-   - Detect compounding hallucinations in long-form generation (e.g., automated coding logic, medical pathways).
-   - Pre-flight AI Deployment Certification framework (Trust Scores).
-3. **Year 3 (Deployment): Autonomous Governance**
-   - Active real-time API monitoring on production language models.
-   - Fully automated feedback loop: LLM behavior trains Subtractive Filter thresholds dynamically.
+1. **Expand Dataset Connectors**
+   - Integrate TruthfulQA, MedHallu, HaluVerse25, AuthenHallu.
+   - Ensure HuggingFace API fetch + local fallback.
+
+2. **Enhance Subtractive Filter Rules**
+   - Add semantic contradiction detection, RAG-awareness, circularity detection.
+
+3. **Build Visualization Dashboards**
+   - Dash + Plotly for real-time confusion matrices.
+   - 3D metrics for structural vs. unstructured datasets.
+
+4. **Setup CI/CD for Nightly Pre-Flight Runs**
+   - Auto-generate benchmarks and metrics JSON.
+   - Compare against historical baseline.
+
+5. **Create Tutorial Notebooks**
+   - "How to add a new dataset"
+   - "How to tune subtraction ratio"
+   - "How to analyze illogics in your LLM outputs"
+
+6. **Long-Term**
+   - Plan GPU & edge optimization.
+   - Plan multilingual & multi-modal expansion.
 
 ---
 
-**END OF TRANSMISSION.**
-_TRACE ON LAB © 2026 | Sovereign Architecture | TRIGNUM-300M T-CHIP_
+> ✅ **Goal:** Make TRIGNUM-300M the most comprehensive, adaptive, and future-proof hallucination detection repo, ready for industry, research, and sovereign AI deployments in the next 5+ years.\_

@@ -2,8 +2,8 @@
 
 ## The Pre-Flight Check for AI
 
-> *"You wouldn't let a plane take off without a pre-flight check.*
-> *Why are we letting AI agents act without one?"*
+> _"You wouldn't let a plane take off without a pre-flight check._
+> _Why are we letting Autonomous Agents act without one?"_
 
 ---
 
@@ -24,9 +24,9 @@ No plane takes off without a pre-flight check. The pilots don't check whether Lo
 ```
   ╔═══════════════════════════════════════════════════════════╗
   ║                                                           ║
-  ║         ✈️  THE PRE-FLIGHT CHECK FOR AI                    ║
+  ║   ✈️ THE PRE-FLIGHT CHECK FOR AGENTIC REASONING              ║
   ║                                                           ║
-  ║   Before an AI agent ACTS on its reasoning:               ║
+  ║   Before an Autonomous Agent ACTS on its internal plan:   ║
   ║                                                           ║
   ║   □ Check for contradictions    → "always" + "never"      ║
   ║   □ Check for circular logic    → A proves B proves A     ║
@@ -48,17 +48,18 @@ No plane takes off without a pre-flight check. The pilots don't check whether Lo
 
 ## Aviation → TRIGNUM
 
-| Aviation | TRIGNUM |
-|----------|---------|
-| Pre-flight checklist | Subtractive Filter |
-| Instrument cross-check | Contradiction detection |
-| "No-go" call | 🔴 THE FREEZE |
-| Pilot authority | 🟡 HUMAN PULSE (Sovereign) |
-| Flight recorder | T-CHIP glow state log |
-| Black box | Magnetic Trillage audit trail |
+| Aviation               | TRIGNUM                                            |
+| ---------------------- | -------------------------------------------------- |
+| Pre-flight checklist   | Subtractive Filter                                 |
+| Instrument cross-check | Contradiction detection                            |
+| "No-go" call           | 🔴 THE FREEZE (Immediate failure signal $r_t = 0$) |
+| Pilot authority        | 🟡 HUMAN PULSE (Sovereign Override)                |
+| Flight recorder        | T-CHIP state log                                   |
+| Black box              | Magnetic Trillage evaluation trail                 |
 
-**Nobody checks the AI's reasoning before it acts.**
-TRIGNUM does. In 1 millisecond. With zero false alarms.
+**Modern systems use LLMs to check LLMs.**
+**TRIGNUM uses deterministic logic to check LLMs.**
+In 1 millisecond. With zero false alarms.
 
 ---
 
@@ -73,11 +74,11 @@ This revealed something critical:
 > **The Subtractive Filter is NOT a hallucination detector.**
 > **It is a reasoning integrity layer.**
 
-| What Others Detect | What TRIGNUM Detects |
-|---------------------|----------------------|
-| Wrong facts | Broken logic |
-| Incorrect dates | Circular reasoning |
-| Misattributed quotes | Conclusions without evidence |
+| What Others Detect       | What TRIGNUM Detects            |
+| ------------------------ | ------------------------------- |
+| Wrong facts              | Broken logic                    |
+| Incorrect dates          | Circular reasoning              |
+| Misattributed quotes     | Conclusions without evidence    |
 | Factual errors (content) | Structural collapse (reasoning) |
 
 LLMs can fact-check themselves. What they **cannot** detect is when their own **reasoning structure has collapsed** — and that's what the Subtractive Filter catches.
@@ -89,24 +90,24 @@ LLMs can fact-check themselves. What they **cannot** detect is when their own **
 
 ## The Pitch
 
-**TRIGNUM-300M is the pre-flight check for autonomous AI.**
+**TRIGNUM-300M is the deterministic "Validator-Driven Feedback" gate for Agentic Reasoning.**
 
-It validates reasoning structure — not facts, not content — **the logic itself.**
-If the reasoning is broken, T-CHIP freezes. A human must authorize takeoff.
+As AI shifts toward Multi-Agent Systems (MAS) and autonomous swarms, agents require a rigorous "**Critic / Evaluator**" to prevent compounding logic errors. TRIGNUM validates the _reasoning geometry_—not facts, not content—**the logic itself.**
+If the agent's internal thought process ($z_t$) is broken, T-CHIP freezes. A human must authorize takeoff before the agent can take external action ($a_t$).
 
-- **1ms latency** — doesn't slow anything down
-- **100% precision** — zero false alarms
-- **Zero API calls** — runs locally, offline, sovereign
-- **Works on any LLM output** — model-agnostic
+- **1ms latency** — Provides immediate Validator-Driven Feedback.
+- **100% precision** — Zero false alarms on structural logic.
+- **Zero API calls** — Runs locally, serving Embedded Agents at the edge.
+- **Model-Agnostic** — The universal constraint-checker for any LLM.
 
-*The Subtractive Filter: Because the most dangerous AI failure
-isn't a wrong fact. It's reasoning that sounds right but isn't.* 🧲
+_The Subtractive Filter: Because the most dangerous AI failure
+isn't a wrong fact. It's an autonomous action based on broken logic._ 🧲
 
 ---
 
 ```
   TRACE ON LAB © 2026
   Sovereign Architecture
-  
+
   🔵 T-CHIP: CLEARED FOR TAKEOFF.
 ```

@@ -13,6 +13,10 @@ TRIGNUM-300M is a Subtractive Filter-based hallucination detection framework. In
 
 > "The universe does not create Truth by adding information. It reveals Truth by removing the Impossible."
 
+<div align="center">
+  <img src="assets/roadmap_architecture.jpg" width="800" alt="TRIGNUM-300M Architecture Flowchart" />
+</div>
+
 ---
 
 ## 2️⃣ Pre-Flight Evaluation Metrics (Level 1 Benchmark)

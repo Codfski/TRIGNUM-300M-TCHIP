@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🧲 TRIGNUM-300M
+
 ### The Pre-Flight Check for Autonomous AI
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -11,6 +12,7 @@
 > **"You wouldn't let a plane take off without a pre-flight check.**  
 > **Why are we letting AI agents act without one?"**
 
+<img src="assets/roadmap_architecture.jpg" width="800" alt="TRIGNUM-300M Architecture Flowchart" />
 </div>
 
 ---
@@ -51,10 +53,10 @@ else:
 
 We tested on **58,293 real LLM outputs** from [HaluEval](https://github.com/RUCAIBox/HaluEval). Honest results:
 
-| Benchmark | Samples | Precision | Recall | F1 | Speed |
-|-----------|---------|-----------|--------|----|-------|
-| Structural illogic (curated) | 45 | **100%** | 84% | **91.3%** | <1ms |
-| HaluEval (full dataset) | 58,293 | 60% | 2.1% | 4.0% | 706ms |
+| Benchmark                    | Samples | Precision | Recall | F1        | Speed |
+| ---------------------------- | ------- | --------- | ------ | --------- | ----- |
+| Structural illogic (curated) | 45      | **100%**  | 84%    | **91.3%** | <1ms  |
+| HaluEval (full dataset)      | 58,293  | 60%       | 2.1%   | 4.0%      | 706ms |
 
 ### What this means:
 
@@ -65,11 +67,11 @@ We tested on **58,293 real LLM outputs** from [HaluEval](https://github.com/RUCA
 
 ### Per-Task Breakdown (HaluEval)
 
-| Task | n | Precision | Recall | F1 |
-|------|---|-----------|--------|----|
-| QA | 18,316 | 83.3% | 0.25% | 0.50% |
-| Dialogue | 19,977 | 60.1% | 4.38% | 8.16% |
-| Summarization | 20,000 | 57.4% | 1.60% | 3.11% |
+| Task          | n      | Precision | Recall | F1    |
+| ------------- | ------ | --------- | ------ | ----- |
+| QA            | 18,316 | 83.3%     | 0.25%  | 0.50% |
+| Dialogue      | 19,977 | 60.1%     | 4.38%  | 8.16% |
+| Summarization | 20,000 | 57.4%     | 1.60%  | 3.11% |
 
 **Throughput: 82,544 samples/second** — 80,000× faster than LLM-based validation.
 
@@ -99,11 +101,11 @@ LLM Output → Subtractive Filter → [PASS] 🔵 → Agent Executes
 
 Three faces acting as magnetic poles for data separation:
 
-| Face | Role | What It Does |
-|------|------|-------------|
-| **α (Logic)** | Truth detection | Identifies structurally sound reasoning |
+| Face            | Role            | What It Does                                          |
+| --------------- | --------------- | ----------------------------------------------------- |
+| **α (Logic)**   | Truth detection | Identifies structurally sound reasoning               |
 | **β (Illogic)** | Error detection | Catches contradictions, circular logic, non-sequiturs |
-| **γ (Context)** | Human grounding | Anchors output to human intent |
+| **γ (Context)** | Human grounding | Anchors output to human intent                        |
 
 ### T-CHIP: The Tensor Character
 
@@ -123,12 +125,12 @@ Three faces acting as magnetic poles for data separation:
 
 Four detection layers, all pattern-based:
 
-| Layer | Catches | Method |
-|-------|---------|--------|
-| **Contradiction** | "X is always true. X is never true." | Antonym pairs, negation patterns |
-| **Circular Logic** | A proves B proves A | Reference chain analysis |
-| **Non-Sequitur** | "Therefore X" without premises | Causal connective analysis |
-| **Depth Check** | Claims without any reasoning | Assertion density scoring |
+| Layer              | Catches                              | Method                           |
+| ------------------ | ------------------------------------ | -------------------------------- |
+| **Contradiction**  | "X is always true. X is never true." | Antonym pairs, negation patterns |
+| **Circular Logic** | A proves B proves A                  | Reference chain analysis         |
+| **Non-Sequitur**   | "Therefore X" without premises       | Causal connective analysis       |
+| **Depth Check**    | Claims without any reasoning         | Assertion density scoring        |
 
 ---
 
@@ -188,13 +190,13 @@ pytest tests/ -v
 
 We searched arXiv, ResearchGate, ACL Anthology, and Semantic Scholar. Every existing reasoning validation system requires model inference:
 
-| System | Requires Model | Validates Reasoning |
-|--------|:--------------:|:-------------------:|
-| VerifyLLM (2025) | ✅ Yes | Partially |
-| ContraGen | ✅ Yes | Partially |
-| Process Supervision (OpenAI) | ✅ Yes | Yes |
-| Guardrails AI | ✅ Configurable | No (content) |
-| **Subtractive Filter** | **❌ No** | **✅ Yes** |
+| System                       | Requires Model  | Validates Reasoning |
+| ---------------------------- | :-------------: | :-----------------: |
+| VerifyLLM (2025)             |     ✅ Yes      |      Partially      |
+| ContraGen                    |     ✅ Yes      |      Partially      |
+| Process Supervision (OpenAI) |     ✅ Yes      |         Yes         |
+| Guardrails AI                | ✅ Configurable |    No (content)     |
+| **Subtractive Filter**       |    **❌ No**    |     **✅ Yes**      |
 
 > **Existing work uses LLMs to check LLMs. TRIGNUM uses logic to check LLMs.**
 
@@ -204,28 +206,28 @@ Read the full analysis in our [position paper](paper/TRIGNUM_300M_Position_Paper
 
 ## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| [Core Postulate](docs/theory/01_core_postulate.md) | The fundamental axioms of Trignum |
-| [Three Faces](docs/theory/02_three_faces.md) | α (Logic), β (Illogic), γ (Context) |
-| [Magnetic Trillage](docs/theory/03_magnetic_trillage.md) | Data separation mechanism |
-| [T-CHIP Spec](docs/theory/04_tchip_spec.md) | The Tensor Character in detail |
-| [Cold State Hardware](docs/theory/05_cold_state_hardware.md) | Hardware implications |
-| [Hallucination Paradox](docs/theory/06_hallucination_paradox.md) | Reframing the "Big Monster" |
-| [Position Paper](paper/TRIGNUM_300M_Position_Paper.md) | Full academic paper with benchmarks |
-| [Roadmap](ROADMAP.md) | 2-quarter development plan |
+| Document                                                         | Description                         |
+| ---------------------------------------------------------------- | ----------------------------------- |
+| [Core Postulate](docs/theory/01_core_postulate.md)               | The fundamental axioms of Trignum   |
+| [Three Faces](docs/theory/02_three_faces.md)                     | α (Logic), β (Illogic), γ (Context) |
+| [Magnetic Trillage](docs/theory/03_magnetic_trillage.md)         | Data separation mechanism           |
+| [T-CHIP Spec](docs/theory/04_tchip_spec.md)                      | The Tensor Character in detail      |
+| [Cold State Hardware](docs/theory/05_cold_state_hardware.md)     | Hardware implications               |
+| [Hallucination Paradox](docs/theory/06_hallucination_paradox.md) | Reframing the "Big Monster"         |
+| [Position Paper](paper/TRIGNUM_300M_Position_Paper.md)           | Full academic paper with benchmarks |
+| [Roadmap](ROADMAP.md)                                            | 2-quarter development plan          |
 
 ---
 
 ## 💎 The Golden Gems
 
-| Gem | Wisdom |
-|-----|--------|
-| GEM 1 | "The Human Pulse is the Master Clock" |
-| GEM 2 | "The Illogic is the Compass" |
-| GEM 3 | "Magnetic Trillage Over Brute Force" |
+| Gem   | Wisdom                                  |
+| ----- | --------------------------------------- |
+| GEM 1 | "The Human Pulse is the Master Clock"   |
+| GEM 2 | "The Illogic is the Compass"            |
+| GEM 3 | "Magnetic Trillage Over Brute Force"    |
 | GEM 4 | "The Hallucination is the Raw Material" |
-| GEM 5 | "T-CHIP is the Mirror" |
+| GEM 5 | "T-CHIP is the Mirror"                  |
 
 ---
 
@@ -244,13 +246,13 @@ MIT License — see [LICENSE](LICENSE).
 ## 📞 Contact
 
 **TRACE ON LAB**  
-📧 traceonlab@proton.me  
+📧 traceonlab@proton.me
 
 ---
 
 ## 🛡️ The Call
 
-> *"The most dangerous AI failure is not a wrong fact. It is reasoning that sounds right but isn't."*
+> _"The most dangerous AI failure is not a wrong fact. It is reasoning that sounds right but isn't."_
 
 ```
 ╔═══════════════════════════════════════════════════════╗

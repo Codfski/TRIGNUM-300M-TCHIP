@@ -208,4 +208,55 @@ trignum-300m/
 
 ---
 
+## 8️⃣ “If You Want” Consolidated Enhancements Wishlist
+
+### 1. Visual & Dashboard Enhancements
+
+- Interactive confusion matrices per dataset.
+- F1 trend graphs across pre-flight runs.
+- 3D hallucination maps for patterns in text / structured / sequential data.
+- Mermaid / PlantUML diagrams for benchmarking pipeline.
+- Real-time dashboard with filtering and drill-down per source.
+
+### 2. Dataset & Integration Enhancements
+
+- HuggingFace API + local fallback connectors for:
+  - TruthfulQA, MedHallu, HaluVerse25, AuthenHallu, FactScore / Factool, SelfCheckGPT
+- Multilingual datasets (Arabic, Turkish, English)
+- Multimodal inputs (images + text for future hallucination detection).
+
+### 3. Subtractive Filter Enhancements
+
+- Semantic contradiction detection (beyond keyword spotting).
+- RAG-awareness (detect hallucinations in retrieved context).
+- Circular reference detection (multi-hop reasoning).
+- Dynamic subtraction thresholds per dataset type.
+- Confidence scoring per illogic category.
+- Edge-device optimized version for on-device evaluation.
+
+### 4. Evaluation & Benchmarking
+
+- Nightly CI/CD pre-flight runs generating JSON metrics.
+- Automated regression detection (alerts if recall/precision drops).
+- Auto-calibration of subtraction ratio based on historical data.
+- Comparison dashboards: current vs previous benchmarks.
+
+### 5. Developer Experience
+
+- Tutorial notebooks: “Adding a new dataset”, “Tuning subtraction ratio”, “Analyzing illogics in outputs”.
+- Structured `FilterResult` logging for auditing and analysis.
+- Versioned benchmark history for reproducibility.
+
+### 6. Long-Term / Futuristic
+
+- Multimodal hallucination detection (audio + text + images).
+- GPU acceleration for large-scale LLM outputs.
+- Multilingual & cultural adaptation.
+- Integration with sovereign AI frameworks (edge / offline).
+- Predictive hallucination modeling (using historical patterns to flag risky outputs).
+
+---
+
+> 💡 **Note:** This is your single "catch-all" enhancement wishlist. If Gemini 3.1 implements everything here, TRIGNUM-300M becomes the definitive, future-proof hallucination detection framework for research, industry, and sovereign AI deployments.
+
 > ✅ **Goal:** Make TRIGNUM-300M the most comprehensive, adaptive, and future-proof hallucination detection repo, ready for industry, research, and sovereign AI deployments in the next 5+ years.\_

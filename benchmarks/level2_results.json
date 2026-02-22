@@ -1,0 +1,136 @@
+{
+  "report": "TRIGNUM-300M Level-2 Copilot Pipeline",
+  "generated_at": "2026-02-22T03:59:43",
+  "total_samples": 830,
+  "tp": 47,
+  "fp": 13,
+  "tn": 427,
+  "fn": 343,
+  "precision": 0.7833333333333333,
+  "recall": 0.12051282051282051,
+  "f1": 0.2088888888888889,
+  "accuracy": 0.5710843373493976,
+  "total_time_ms": 15.394099755212665,
+  "throughput_per_sec": 53916.76117461497,
+  "per_dataset": {
+    "TruthfulQA": {
+      "total": 120,
+      "correct": 60,
+      "tp": 1,
+      "fp": 1,
+      "tn": 59,
+      "fn": 59,
+      "accuracy": 0.5
+    },
+    "MedHallu Proxy": {
+      "total": 50,
+      "correct": 50,
+      "tp": 0,
+      "fp": 0,
+      "tn": 50,
+      "fn": 0,
+      "accuracy": 1.0
+    },
+    "HaluEval QA": {
+      "total": 200,
+      "correct": 100,
+      "tp": 4,
+      "fp": 4,
+      "tn": 96,
+      "fn": 96,
+      "accuracy": 0.5
+    },
+    "HaluEval Dialogue": {
+      "total": 200,
+      "correct": 103,
+      "tp": 8,
+      "fp": 5,
+      "tn": 95,
+      "fn": 92,
+      "accuracy": 0.515
+    },
+    "HaluEval Summarization": {
+      "total": 200,
+      "correct": 101,
+      "tp": 4,
+      "fp": 3,
+      "tn": 97,
+      "fn": 96,
+      "accuracy": 0.505
+    },
+    "Vectara HHEM": {
+      "total": 30,
+      "correct": 30,
+      "tp": 15,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "accuracy": 1.0
+    },
+    "FELM-Science": {
+      "total": 30,
+      "correct": 30,
+      "tp": 15,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "accuracy": 1.0
+    }
+  },
+  "per_type": {
+    "clean": {
+      "total": 440,
+      "correct": 427,
+      "tp": 0,
+      "fp": 13,
+      "tn": 427,
+      "fn": 0,
+      "accuracy": 0.9704545454545455
+    },
+    "misconception": {
+      "total": 60,
+      "correct": 1,
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 59,
+      "accuracy": 0.016666666666666666
+    },
+    "qa_fabrication": {
+      "total": 100,
+      "correct": 4,
+      "tp": 4,
+      "fp": 0,
+      "tn": 0,
+      "fn": 96,
+      "accuracy": 0.04
+    },
+    "dialogue_hallu": {
+      "total": 100,
+      "correct": 8,
+      "tp": 8,
+      "fp": 0,
+      "tn": 0,
+      "fn": 92,
+      "accuracy": 0.08
+    },
+    "summary_hallu": {
+      "total": 100,
+      "correct": 4,
+      "tp": 4,
+      "fp": 0,
+      "tn": 0,
+      "fn": 96,
+      "accuracy": 0.04
+    },
+    "structural_contradiction": {
+      "total": 30,
+      "correct": 30,
+      "tp": 30,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "accuracy": 1.0
+    }
+  }
+}

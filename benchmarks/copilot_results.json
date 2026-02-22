@@ -1,0 +1,114 @@
+{
+  "report": "TRIGNUM-300M CopilotPipeline",
+  "generated_at": "2026-02-22T03:56:07",
+  "aggregate": {
+    "total": 11915,
+    "tp": 180,
+    "fp": 118,
+    "tn": 5699,
+    "fn": 5918,
+    "precision": 0.6040268456375839,
+    "recall": 0.029517874713020663,
+    "f1": 0.05628517823639775,
+    "accuracy": 0.49341166596726815,
+    "avg_latency_ms": 0.015921477067971736,
+    "max_latency_ms": 3.0696000321768224,
+    "throughput_per_sec": 62808.24296205777,
+    "illogic_distribution": {
+      "contradiction": 236,
+      "category_error": 1,
+      "circular_reference": 68,
+      "non_sequitur": 1
+    }
+  },
+  "per_database": {
+    "[B] HaluEval QA": {
+      "total": 3660,
+      "tp": 5,
+      "fp": 2,
+      "tn": 1660,
+      "fn": 1993,
+      "precision": 0.7142857142857143,
+      "recall": 0.0025025025025025025,
+      "f1": 0.004987531172069825,
+      "accuracy": 0.45491803278688525,
+      "avg_latency_ms": 0.0073434151721802725,
+      "max_latency_ms": 1.49500003317371,
+      "throughput_per_sec": 136176.42153590755,
+      "illogic_distribution": {
+        "contradiction": 3,
+        "category_error": 1,
+        "circular_reference": 2,
+        "non_sequitur": 1
+      }
+    },
+    "[C] HaluEval Dialogue": {
+      "total": 3995,
+      "tp": 108,
+      "fp": 73,
+      "tn": 1922,
+      "fn": 1892,
+      "precision": 0.5966850828729282,
+      "recall": 0.054,
+      "f1": 0.09903713892709766,
+      "accuracy": 0.5081351689612015,
+      "avg_latency_ms": 0.012579649449028868,
+      "max_latency_ms": 3.0696000321768224,
+      "throughput_per_sec": 79493.47110600119,
+      "illogic_distribution": {
+        "contradiction": 166,
+        "circular_reference": 16
+      }
+    },
+    "[D] HaluEval Summarization": {
+      "total": 4000,
+      "tp": 66,
+      "fp": 41,
+      "tn": 1959,
+      "fn": 1934,
+      "precision": 0.616822429906542,
+      "recall": 0.033,
+      "f1": 0.06264831514000949,
+      "accuracy": 0.50625,
+      "avg_latency_ms": 0.027433749884949066,
+      "max_latency_ms": 0.9211000287905335,
+      "throughput_per_sec": 36451.45137627096,
+      "illogic_distribution": {
+        "contradiction": 67,
+        "circular_reference": 47
+      }
+    },
+    "[F] TruthfulQA": {
+      "total": 200,
+      "tp": 1,
+      "fp": 2,
+      "tn": 98,
+      "fn": 99,
+      "precision": 0.3333333333333333,
+      "recall": 0.01,
+      "f1": 0.019417475728155338,
+      "accuracy": 0.495,
+      "avg_latency_ms": 0.0093165019643493,
+      "max_latency_ms": 0.2804999821819365,
+      "throughput_per_sec": 107336.42345878514,
+      "illogic_distribution": {
+        "circular_reference": 3
+      }
+    },
+    "[G] MedHallu Proxy": {
+      "total": 60,
+      "tp": 0,
+      "fp": 0,
+      "tn": 60,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "avg_latency_ms": 0.016225004219450057,
+      "max_latency_ms": 0.030199997127056122,
+      "throughput_per_sec": 61633.26594400693,
+      "illogic_distribution": {}
+    }
+  }
+}

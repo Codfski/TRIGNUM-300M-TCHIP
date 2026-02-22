@@ -11,11 +11,11 @@
 
 ## 1. Objective
 
-Transform raw natural language into a minimal logical shape that allows TRIGNUM to detect impossibilities **structurally** rather than **lexically**.
+Transform raw natural language into a minimal logical shape that allows TRIGNUM to operate as a deterministic **Validator-Driven Feedback** mechanism. It must detect impossibilities **structurally** rather than **lexically**, serving as the ultimate constraint-checker for Foundational Agentic Reasoning loops.
 
 We are NOT building semantic understanding.
 
-> **We are building reasoning geometry extraction.**
+> **We are building reasoning geometry extraction for Agentic Reflection.**
 
 ---
 
@@ -259,7 +259,7 @@ tests/
 
 ## 11. Definition of Success
 
-> _"TRIGNUM succeeds if it becomes a structural validation layer that improves LLM reasoning reliability without adding model weight."_
+> _"TRIGNUM succeeds if it becomes the standard 'Critic/Evaluator' layer for Multi-Agent Systems, offering deterministic Validator-Driven Feedback without adding parametric model weight."_
 
 **If it becomes slower, smarter, or knowledge-heavy — we failed the design.**
 

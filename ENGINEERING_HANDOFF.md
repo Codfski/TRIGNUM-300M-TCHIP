@@ -10,9 +10,9 @@
 
 TRIGNUM-300M is not a language model and is not intended to compete with LLMs.
 
-It is a **pre-semantic logical filtration layer** designed to run before or alongside an LLM in order to:
+It is a **deterministic Validator-Driven Feedback layer** designed to run before or alongside an Agentic workflow in order to:
 
-> _"Remove structurally impossible reasoning patterns prior to probabilistic generation."_
+> _"Provide structural constraint-checking for Foundational Agentic Reasoning, removing impossible thought-trajectories prior to external action."_
 
 This system follows a **subtractive epistemology**:
 
@@ -25,7 +25,7 @@ we eliminate known-invalid reasoning forms (finite, computable).
 
 Think of it as:
 
-> _"A logical garbage collector for AI cognition."_
+> _"A deterministic 'Critic/Evaluator' for single-agent reflection and Multi-Agent Systems (MAS)."_
 
 ---
 
@@ -76,10 +76,10 @@ No embeddings. No training. No probabilistic scoring. **This is intentional.**
 
 This confirms the architecture is lightweight enough for:
 
-- Edge deployment
-- Inline inference sanitation
-- RAG pre-processing
-- Real-time validation layers
+- Edge deployment for Embodied Agents
+- Inline inference sanitation for self-evolving agents
+- Agentic Search (RAG) pre-processing
+- Real-time Critic/Evaluator roles in Multi-Agent Swarms
 
 ---
 
@@ -315,11 +315,11 @@ TRIGNUM is best described as:
 
 > _"A Pre-Semantic Reasoning Sanitizer for Generative Systems"_
 
-| Traditional Systems   | TRIGNUM Role                             |
-| --------------------- | ---------------------------------------- |
-| Compiler type-checker | Logical type-checker for language models |
+| Traditional Systems   | TRIGNUM Role                               |
+| --------------------- | ------------------------------------------ |
+| Compiler type-checker | Validator-Driven Feedback for Agentic LLMs |
 
-It validates **reasoning form**, not answer truth.
+It validates **reasoning geometry**, not answer truth.
 
 ---
 

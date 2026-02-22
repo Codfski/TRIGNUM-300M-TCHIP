@@ -1,12 +1,16 @@
-# No external dependencies required for core functionality.
-# All modules use Python standard library only.
-
-# Optional: for running tests
+# Core TRIGNUM Engine Dependencies
 pytest>=7.0.0
+pytest-cov>=4.0.0
+numpy>=1.24.0
 
-# Optional: for Jupyter notebooks
+# Future Notebooks & Dashboards (Placeholder Scaffold)
+dash>=2.14.0
+plotly>=5.18.0
+pandas>=2.0.0
+requests>=2.31.0
 jupyter>=1.0.0
-notebook>=7.0.0
+tqdm>=4.66.1
 
-# Optional: for PDF generation (TRIGNUM Tetrahedron paper)
-reportlab>=4.0.0
+# 3D Visuals & Data APIs
+# datasets (Huggingface) - *Installed locally via REST API instead to bypass pip issues, but uncomment below if desired.*
+# datasets>=2.14.0

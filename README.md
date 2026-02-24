@@ -45,7 +45,7 @@ else:
     # T-CHIP glows BLUE 🔵 → Cleared for takeoff
 ```
 
-**No LLM. No API. No training data. ~300 lines of Python. 1ms.**
+**No LLM. No API. No training data. ~300 lines of Python. <1ms.**
 
 ---
 
@@ -101,7 +101,7 @@ In the context of the recent shift towards **Agentic Reasoning**, autonomous LLM
 
 Current systems rely heavily on probabilistic models to act as the "Critic/Evaluator" or use "Validator-Driven Feedback" via unit tests for code or simulators for robotics. **But there has been no validator for pure logic.** If an agent hallucinates a non-sequitur or circular justification during its internal planning phase, the error cascades.
 
-TRIGNUM-300M fills this exact gap. It acts as a deterministic, 1ms **Validator-Driven Feedback** gate. It halts execution if the agent's internal thought (`zt`) contains a structural illogic, providing an immediate failure signal (`rt = 0`) _before_ the agent commits to an irreversible external action (`at`).
+TRIGNUM-300M fills this exact gap. It acts as a deterministic, <1ms **Validator-Driven Feedback** gate. It halts execution if the agent's internal thought (`zt`) contains a structural illogic, providing an immediate failure signal (`rt = 0`) _before_ the agent commits to an irreversible external action (`at`).
 
 ---
 
@@ -127,7 +127,7 @@ Three faces acting as magnetic poles for data separation:
 ║  🔴 Red   = Illogic Detected (THE FREEZE)             ║
 ║  🟡 Gold  = Human Pulse Locked (Sovereign Override)   ║
 ║                                                       ║
-║  Response time: 1ms | False alarms: 0% (structural)  ║
+║  Response time: <1ms | False alarms: 0% (structural)  ║
 ╚═══════════════════════════════════════════════════════╝
 ```
 
@@ -220,7 +220,7 @@ TRIGNUM-300M serves as Phase 1 ("Technical A Priori Validation") for **Trignumen
 
 In our groundbreaking case study estimating the ground state energy of the **H₂ molecule**, TRIGNUM successfully validated the physical consistency and structural logic of the quantum circuit _before execution_. By acting as the preliminary gatekeeper, TRIGNUM ensured that no quantum resources were wasted on structurally ill-formed configurations, enabling an epistemic confidence score of **82.8%** on the final estimate (-1.1384 Ha).
 
-Read the full "BUILDING THE BRIDGE" paper on Trignumentality and TQPE in the main [Trignum](https://github.com/Codfski/Trignum) repository.
+Read the full `BUILDING THE BRIDGE` paper on Trignumentality and TQPE in the main [Trignum](https://github.com/Codfski/Trignum) repository.
 
 ---
 

@@ -216,6 +216,8 @@ Read the full analysis in our [position paper](paper/TRIGNUM_300M_Position_Paper
 
 ## ⚛️ Quantum Integration: TQPE
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18751914.svg)](https://doi.org/10.5281/zenodo.18751914)
+
 TRIGNUM-300M serves as Phase 1 ("Technical A Priori Validation") for **Trignumental Quantum Phase Estimation (TQPE)**.
 
 In our groundbreaking case study estimating the ground state energy of the **H₂ molecule**, TRIGNUM successfully validated the physical consistency and structural logic of the quantum circuit _before execution_. By acting as the preliminary gatekeeper, TRIGNUM ensured that no quantum resources were wasted on structurally ill-formed configurations, enabling an epistemic confidence score of **82.8%** on the final estimate (-1.1384 Ha).

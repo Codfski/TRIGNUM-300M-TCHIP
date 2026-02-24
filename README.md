@@ -220,7 +220,7 @@ TRIGNUM-300M serves as Phase 1 ("Technical A Priori Validation") for **Trignumen
 
 In our groundbreaking case study estimating the ground state energy of the **H₂ molecule**, TRIGNUM successfully validated the physical consistency and structural logic of the quantum circuit _before execution_. By acting as the preliminary gatekeeper, TRIGNUM ensured that no quantum resources were wasted on structurally ill-formed configurations, enabling an epistemic confidence score of **82.8%** on the final estimate (-1.1384 Ha).
 
-Read the full `BUILDING THE BRIDGE` paper on Trignumentality and TQPE in the main [Trignum](https://github.com/Codfski/Trignum) repository.
+Read the full `BUILDING THE BRIDGE` paper on Trignumentality and TQPE in the foundational [Trignumentality](https://github.com/Codfski/trignumentality) repository.
 
 ---
 
